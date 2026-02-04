@@ -1,0 +1,107 @@
+/* =========================
+   GLOBAL RESET & BASICS
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #ffe6ea, #fff5f7);
+  color: #5a0f1b;
+  min-height: 100vh;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-title {
+  font-size: 8.1rem;
+  color: #9f1124;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #7a1f2b;
+  margin-bottom: 2rem;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.primary-btn {
+  background: #e63946;
+  color: #fff;
+  border: none;
+  padding: 0.9rem 2.2rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.3);
+  transition: all 0.3s ease;
+}
+
+.primary-btn:hover {
+  background: #c9182b;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(230, 57, 70, 0.4);
+}
+
+/* =========================
+   ABOUT SECTION
+========================= */
+
+.about {
+  background: #ffffff;
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 700px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.about h2 {
+  color: #b11226;
+  margin-bottom: 1rem;
+}
+
+.about p {
+  color: #6b1e28;
+  line-height: 1.6;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  color: #7a1f2b;
+}
+
+/* =========================
+   UTILITIES
+========================= */
+
+.hidden {
+  display: none;
+}

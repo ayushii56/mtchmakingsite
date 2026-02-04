@@ -1,0 +1,66 @@
+/* =========================
+   MATCH FINDING LAYOUT
+========================= */
+
+.match-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.match-card {
+  background: #ffffff;
+  padding: 3rem 2.5rem;
+  border-radius: 26px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+}
+
+/* =========================
+   HEART LOADER
+========================= */
+
+.heart-loader {
+  font-size: 3.2rem;
+  animation: pulse 1.2s infinite ease-in-out;
+  margin-bottom: 1.5rem;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.match-title {
+  font-size: 1.8rem;
+  color: #b11226;
+  margin-bottom: 0.8rem;
+}
+
+.match-subtitle {
+  font-size: 1rem;
+  color: #7a1f2b;
+  line-height: 1.6;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}

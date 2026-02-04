@@ -1,0 +1,115 @@
+/* =========================
+   AUTH PAGE LAYOUT
+========================= */
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.auth-title {
+  font-size: 2.4rem;
+  color: #b11226;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.auth-subtitle {
+  font-size: 1rem;
+  color: #7a1f2b;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* =========================
+   AUTH CARD
+========================= */
+
+.auth-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 380px;
+  padding: 2rem;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.auth-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+  border-radius: 14px;
+  border: 1px solid #f1b5bb;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.auth-input:focus {
+  border-color: #e63946;
+}
+
+/* =========================
+   BUTTON VARIANTS
+========================= */
+
+.full-width {
+  width: 100%;
+}
+
+.secondary-btn {
+  background: #fff;
+  color: #b11226;
+  border: 2px solid #e63946;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+  background: #ffe6ea;
+}
+
+/* =========================
+   DIVIDER
+========================= */
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.divider span {
+  margin: 0 0.6rem;
+  color: #7a1f2b;
+  font-size: 0.85rem;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #f1b5bb;
+}
+
+/* =========================
+   FOOTER TEXT
+========================= */
+
+.auth-footer {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #7a1f2b;
+  text-align: center;
+}

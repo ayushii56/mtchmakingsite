@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking ID | Tug of Love</title>
+
+  <!-- Global + Onboarding Styles -->
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/onboarding.css" />
+</head>
+<body>
+
+  <div class="onboarding-container">
+    <h1 class="onboarding-title">Almost done 💌</h1>
+    <p class="onboarding-subtitle">
+      Enter your booking ID to unlock your match.
+    </p>
+
+    <form id="bookingForm" class="onboarding-card">
+
+      <label class="form-label">Booking ID</label>
+      <input
+        type="text"
+        id="bookingCode"
+        class="form-input"
+        placeholder="Enter your booking ID"
+        required
+      />
+
+      <button type="submit" class="primary-btn full-width">
+        Verify & Continue 💖
+      </button>
+
+    </form>
+  </div>
+
+ <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase.js"></script>
+<script src="../assets/js/booking.js"></script>
+</body>
+</html>

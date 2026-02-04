@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Profile | Tug of Love</title>
+
+    <!-- Global + Onboarding Styles -->
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/onboarding.css" />
+</head>
+
+<body>
+
+    <div class="onboarding-container">
+        <h1 class="onboarding-title">Let’s get to know you 💖</h1>
+        <p class="onboarding-subtitle">
+            Just the basics — we’ll take it slow.
+        </p>
+
+        <form id="profileForm" class="onboarding-card">
+
+            <label class="form-label">Your Name</label>
+            <input type="text" id="name" class="form-input" placeholder="Enter your name" required />
+
+            <label class="form-label">Phone Number</label>
+            <input type="tel" id="phone" class="form-input" placeholder="Enter your phone number" required />
+
+            <label class="form-label">Gender Identity</label>
+            <select id="gender" class="form-select" required>
+                <option value="">Select one</option>
+                <option value="Man">Man</option>
+                <option value="Woman">Woman</option>
+                <option value="Non-binary">Non-binary</option>
+                <option value="Self-describe">Prefer to self-describe</option>
+            </select>
+
+            <input type="text" id="customGender" class="form-input hidden"
+                placeholder="Describe your gender identity" />
+
+            <button type="submit" class="primary-btn full-width">
+                Continue 💘
+            </button>
+
+        </form>
+    </div>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase.js"></script>
+    <script src="../assets/js/profile.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+/* =========================
+   QUESTION CARD
+========================= */
+
+.question-card {
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.question-progress {
+  font-size: 0.85rem;
+  color: #9c3a44;
+  margin-bottom: 1rem;
+}
+
+/* =========================
+   QUESTION TEXT
+========================= */
+
+.question-text {
+  font-size: 1.35rem;
+  color: #5a0f1b;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.question-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.question-actions button {
+  padding: 1rem;
+  font-size: 1.05rem;
+}
+
+/* =========================
+   MICRO INTERACTIONS
+========================= */
+
+.question-actions button:active {
+  transform: scale(0.98);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* =========================
+   QUESTION BUTTON EQUALITY
+========================= */
+
+.question-actions .primary-btn,
+.question-actions .secondary-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.05rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Agree */
+.question-actions .primary-btn {
+  background: hwb(355 15% 30%);
+  color: #fff;
+}
+
+/* Disagree — same style, softer tone */
+.question-actions .secondary-btn {
+  background: #ee2f38;
+  color: #fff;
+}
+
+.question-actions .secondary-btn:hover {
+  background: #e07076;
+}
+
+.question-actions button:active {
+  transform: scale(0.98);
+}

@@ -1,0 +1,36 @@
+const questions = [
+    // 1️⃣ YOU BETTER MATCH MY ENERGY
+    "I would pick a chill night-in over a chaotic night-out.",
+    "I enjoy dates that don’t need lots of spending or a Google Calendar itinerary.",
+    "Deep conversations are my idea of a good time.",
+
+    // 2️⃣ IRL VIBECHECK
+    "People usually find me more attractive in person than in photos.",
+    "I’m better in conversation in person than on text.",
+    "People often misjudge me at first.",
+
+    // 3️⃣ OLD HABITS DIE HARD
+    "I ignored a red flag because the vibes were good.",
+    "I stayed because I hoped things would change.",
+    "My last connection taught me something (even if it hurt a little).",
+
+    // 4️⃣ HOW I SHOW UP
+    "Once I’m in, I show up consistently.",
+    "I listen fully, not just wait for my turn to speak.",
+    "I buy gifts and plan surprises for my partner.",
+
+    // 5️⃣ REAL TALK
+    "I would rather hear the truth than be kept comfortable.",
+    "I say what I feel instead of only saying what they would want to hear.",
+    "Respect and emotional availability is hotter to me than having everything in common.",
+
+    // 6️⃣ THE LONG GAME
+    "I am open to building something real, not just killing time.",
+    "I believe attraction can grow, not just spark instantly.",
+    "I’m okay taking things slow if it feels right.",
+
+    // 7️⃣ JUST SAYING
+    "I trust my gut more than outside opinions.",
+    "I don’t believe in playing hard to get.",
+    "I think timing matters almost as much as chemistry."
+  ];

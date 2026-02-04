@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions | Tug of Love</title>
+
+  <!-- Global + Onboarding Styles -->
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/onboarding.css" />
+</head>
+<body>
+
+  <div class="onboarding-container">
+    <h1 class="onboarding-title">Just a few questions 💭</h1>
+    <p class="onboarding-subtitle">
+      Answer honestly — there’s no right or wrong here.
+    </p>
+
+    <div class="onboarding-card question-card">
+
+      <!-- Progress -->
+      <p id="progressText" class="question-progress">
+        Question 1 of 21
+      </p>
+
+      <!-- Question Text -->
+      <h2 id="questionText" class="question-text">
+        I would pick a chill night-in over a chaotic night-out.
+      </h2>
+
+      <!-- Answer Buttons -->
+      <div class="question-actions">
+        <button id="agreeBtn" class="primary-btn full-width">
+          Agree 💖
+        </button>
+
+        <button id="disagreeBtn" class="secondary-btn full-width">
+          Disagree 🌙
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JS & CSS-->
+   <link rel="stylesheet" href="../assets/css/questions.css" />
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase.js"></script>
+<script src="../assets/js/questions.js"></script>
+</body>
+</html>

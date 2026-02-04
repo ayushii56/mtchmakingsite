@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Tug of Love Match 💘</title>
+  <link rel="stylesheet" href="../assets/css/onboarding.css" />
+</head>
+<body>
+
+<div class="onboarding-container">
+  <div class="onboarding-card match-card">
+
+    <h1 class="onboarding-title">Your Perfect Match 💖</h1>
+    <p class="onboarding-subtitle">
+      This connection was written in the stars ✨
+    </p>
+
+    <!-- YOU -->
+    <div class="match-block">
+      <div class="emoji-big" id="yourEmoji">🌸</div>
+      <h3 id="yourName">You</h3>
+    </div>
+
+    <div class="heart-divider">💞</div>
+
+    <!-- PARTNER -->
+    <div class="match-block">
+      <div class="emoji-big" id="partnerEmoji">🐼</div>
+      <h3 id="partnerName">Your Match</h3>
+    </div>
+
+    <!-- COMPATIBILITY -->
+    <div class="compatibility-box">
+      <span id="compatibilityScore">82%</span>
+      <p>Compatibility</p>
+    </div>
+
+    <!-- QUOTE -->
+    <p class="love-quote" id="matchQuote">
+      “Some connections don’t scream. They stay.”
+    </p>
+
+  </div>
+</div>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase.js"></script>
+<script src="../assets/js/match.js"></script>
+</body>
+</html>
