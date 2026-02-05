@@ -125,10 +125,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const aTop = preferences[a]?.some(p => p.id === b);
     const bTop = preferences[b]?.some(p => p.id === a);
 
-    if (aTop && bTop) {
-      chosen = { a, b, score };
-      break;
-    }
+    chosen = { a, b, score };
+    break;
+    
   }
 
   if (!chosen) {
