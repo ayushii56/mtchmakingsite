@@ -13,14 +13,14 @@
 
 .auth-title {
   font-size: 2.4rem;
-  color: #b11226;
+  color: #fff835eb;
   margin-bottom: 0.5rem;
   text-align: center;
 }
 
 .auth-subtitle {
   font-size: 1rem;
-  color: #7a1f2b;
+  color: #e8e50a;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -30,10 +30,10 @@
 ========================= */
 
 .auth-card {
-  background: #ffffff;
+  background: #faf7f7f0;
   width: 100%;
   max-width: 380px;
-  padding: 2rem;
+ 
   border-radius: 22px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
@@ -59,6 +59,37 @@
 /* =========================
    BUTTON VARIANTS
 ========================= */
+
+/* =========================
+   PRIMARY THEME BUTTON
+========================= */
+
+.primary-btn {
+  background: #f5ec3fef;
+  color: #ff003c;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 0 #d6c833;
+}
+
+/* hover */
+.primary-btn:hover {
+  background: #ffe96a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #d6c833;
+}
+
+/* click press */
+.primary-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #d6c833;
+}
+
 
 .full-width {
   width: 100%;

@@ -73,7 +73,6 @@ window.addEventListener("load", () => {
           attracted_gender: g
         }))
       );
-
-    window.location.href = "questions.html";
+     window.location.href = "./quiz-intro.html";
   });
 });

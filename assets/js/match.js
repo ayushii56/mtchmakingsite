@@ -128,6 +128,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     chosen = { a, b, score };
     break;
     
+    // TEMP TEST MODE — accept highest compatibility
+    chosen = { a, b, score };
+    break;
+  
   }
 
   if (!chosen) {

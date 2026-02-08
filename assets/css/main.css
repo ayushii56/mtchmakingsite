@@ -1,107 +1,115 @@
-/* =========================
-   GLOBAL RESET & BASICS
-========================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
 body {
-  background: linear-gradient(135deg, #ffe6ea, #fff5f7);
-  color: #5a0f1b;
-  min-height: 100vh;
+  margin: 0;
+  background: #ff003c;
+  font-family: Arial, sans-serif;
 }
 
-/* =========================
-   HERO SECTION
-========================= */
-
-.hero {
-  min-height: 80vh;
+.landing-body {
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+
+/* container */
+.landing {
   text-align: center;
-  padding: 2rem;
+}
+.hero-img {
+  width: min(80vw, 800px);
+  height: auto;
+  display: block;
+  margin: auto;
 }
 
-.hero-title {
-  font-size: 8.1rem;
-  color: #9f1124;
-  margin-bottom: 0.5rem;
+
+/* entrance animation */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.6) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
+  }
 }
 
-.hero-subtitle {
-  font-size: 1.2rem;
-  color: #7a1f2b;
-  margin-bottom: 2rem;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-.primary-btn {
-  background: #e63946;
-  color: #fff;
+/* CTA button */
+.cta {
+  margin-top: 40px;
+  padding: 16px 36px;
+  font-size: 18px;
   border: none;
-  padding: 0.9rem 2.2rem;
-  border-radius: 30px;
-  font-size: 1rem;
+  border-radius: 999px;
+  background: #f5ec3fef;
+  color: #ff003c;
+  font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.3);
-  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.5s;
+  will-change: transform, opacity;
 }
 
-.primary-btn:hover {
-  background: #c9182b;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(230, 57, 70, 0.4);
+.cta.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* =========================
-   ABOUT SECTION
-========================= */
+.cta:hover {
+  background: #ffe3ea;
+}
+/* container center */
+.login-container {
+  text-align: center;
+  color: #ffe3ea;
+}
 
-.about {
-  background: #ffffff;
-  margin: 2rem auto;
-  padding: 2rem;
-  max-width: 700px;
+/* logo */
+.login-logo {
+  width: min(70vw, 700px);
+  margin-bottom: 20px;
+  animation: popIn 0.8s ease;
+}
+
+/* heading */
+.login-container h1 {
+  color: #f5ec3fef;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+/* subtitle */
+.login-container p {
+  color: #ffe3ea;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+/* sign-in box */
+.login-box {
+  background: white;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  text-align: center;
+  padding: 30px;
+  width: 320px;
+  margin: auto;
 }
 
-.about h2 {
-  color: #b11226;
-  margin-bottom: 1rem;
+/* button */
+.login-box button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 999px;
+  border: none;
+  font-weight: bold;
+  background: #f5ec3fef;
+  color: #ff003c;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.about p {
-  color: #6b1e28;
-  line-height: 1.6;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer {
-  text-align: center;
-  padding: 1.5rem;
-  font-size: 0.9rem;
-  color: #7a1f2b;
-}
-
-/* =========================
-   UTILITIES
-========================= */
-
-.hidden {
-  display: none;
+.login-box button:hover {
+  background: #ffe3ea;
 }

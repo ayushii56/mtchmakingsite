@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Quiz | Tug of Love</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+
+<style>
+
+body{
+  margin:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+/* ticket wrapper */
+.ticket-wrap{
+  position:relative;
+  width:95%;
+  max-width:900px;
+}
+
+/* ticket image */
+.ticket-img{
+  width:100%;
+  display:block;
+}
+
+/* LEFT TEXT */
+/* LEFT TEXT — ticket typography */
+
+.ticket-text{
+  position:absolute;
+  left:38%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  width:52%;
+
+  font-family:"Playfair Display", Georgia, serif;
+
+  text-align:center; /* ⭐ key line */
+}
+
+/* headline */
+.ticket-text h2{
+  margin:0;
+  font-size:24px;
+  font-weight:500;
+  color:#333;
+}
+
+/* big text */
+.ticket-text .big{
+  display:block;
+  font-size:46px;
+  font-style:italic;
+  font-weight:400;
+  color:#ff004c;
+
+  margin:10px 0 14px;
+}
+
+/* paragraph */
+.ticket-text p{
+  margin:0 auto;
+  font-size:12.5px;
+  line-height:1.5;
+  color:#555;
+
+  max-width:90%;
+}
+
+
+.ticket-start {
+  position: absolute;
+
+  /* adjust placement */
+  right: 7%;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 140px;
+  height: 160px;
+
+  cursor: pointer;
+}
+
+/* mobile scaling */
+@media(max-width:600px){
+
+.ticket-text h2{font-size:18px;}
+.ticket-text span{font-size:26px;}
+.ticket-text p{font-size:11px;}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="ticket-wrap">
+
+  <img src="../assets/images/ticket.png" class="ticket-img">
+
+ <div class="ticket-text">
+
+  <h2>Find your perfect match in</h2>
+
+  <span class="big">21 questions</span>
+
+  <p>
+    Join our exclusive singles mixer this Valentine's Day.
+     Take our psychology-backed compatibility quiz to
+      get paired with your ideal partner for 
+                   the evening.
+  </p>
+
+</div>
+
+  <div class="ticket-start"
+       onclick="startQuiz()"></div>
+
+</div>
+
+<script>
+function startQuiz() {
+  window.location.href = "questions.html";
+}
+</script>
+
+</body>
+</html>

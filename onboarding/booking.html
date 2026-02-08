@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Booking ID | Tug of Love</title>
 
-  <!-- Global + Onboarding Styles -->
-  <link rel="stylesheet" href="../assets/css/main.css" />
-  <link rel="stylesheet" href="../assets/css/onboarding.css" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Ticket</title>
+
+  <link rel="stylesheet" href="../assets/css/booking.css">
 </head>
+
 <body>
 
-  <div class="onboarding-container">
-    <h1 class="onboarding-title">Almost done 💌</h1>
-    <p class="onboarding-subtitle">
-      Enter your booking ID to unlock your match.
-    </p>
+  <div class="page">
 
-    <form id="bookingForm" class="onboarding-card">
+    <div class="ticket">
 
-      <label class="form-label">Booking ID</label>
-      <input
-        type="text"
-        id="bookingCode"
-        class="form-input"
-        placeholder="Enter your booking ID"
-        required
-      />
+      <h2>Enter your ticket number</h2>
 
-      <button type="submit" class="primary-btn full-width">
-        Verify & Continue 💖
-      </button>
+      <form id="bookingForm" class="form">
+        <input type="text" id="bookingCode" placeholder="NDIXXXXXXXXX" required>
+        <button type="submit">Submit</button>
+      </form>
 
-    </form>
+
+      <p class="link">Didn’t buy the ticket yet</p>
+      <div class="ticket-right">
+        <div class="divider"></div>
+      </div>
+   <div class="ticket-hearts">
+  <span>💖</span>
+  <span>💘</span>
+  <span>🫶</span>
+  <span>💞</span>
+</div>
+
+
+    </div>
+
   </div>
 
- <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-<script src="../assets/js/supabase.js"></script>
-<script src="../assets/js/booking.js"></script>
+  <!-- backend untouched -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabase.js"></script>
+  <script src="../assets/js/booking.js"></script>
+
 </body>
+
 </html>

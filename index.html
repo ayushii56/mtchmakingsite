@@ -1,37 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tug of Love | ToL Cupid</title>
-
-  <!-- Global Styles -->
-  <link rel="stylesheet" href="assets/css/main.css" />
+<meta charset="UTF-8">
+<title>Tug of Love</title>
+<link rel="stylesheet" href="assets/css/main.css">
 </head>
+
 <body>
 
-  <header class="hero">
-    <h1 class="hero-title">Tug of Love </h1>
-    <p class="hero-subtitle">
-      A Valentine Matchmaking Experience
-    </p>
+<div class="landing">
 
-    <button id="startBtn" class="primary-btn">
-      Find My Match 💘
-    </button>
-  </header>
+  <img src="assets/images/main.png" class="hero-img">
 
-  <section class="about">
-    <h2>How It Works</h2>
-    <p>
-      Answer a few thoughtful questions, stay true to your vibe,
-      and let us find your perfect match for this Valentine’s event.
-    </p>
-  </section>
+  <button id="cta" class="cta">
+    Find My Match 💘
+  </button>
 
-  <footer class="footer">
-    <p>Made with 💗 for Valentine’s</p>
-  </footer>
+</div>
+
+<script>
+  // reveal button after delay
+  setTimeout(() => {
+    document.getElementById("cta").classList.add("show");
+  }, 2500);
+</script>
 
   <!-- JS -->
   <script src="assets/js/navigation.js"></script>

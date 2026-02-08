@@ -1,13 +1,18 @@
 // assets/js/questions.js
 
 document.addEventListener("DOMContentLoaded", async () => {
+
   const questionText = document.getElementById("questionText");
   const progressText = document.getElementById("progressText");
   const agreeBtn = document.getElementById("agreeBtn");
   const disagreeBtn = document.getElementById("disagreeBtn");
 
+  // NEW — arrow buttons (frontend only)
+  const arrowUp = document.getElementById("arrowUp");
+  const arrowDown = document.getElementById("arrowDown");
+
   // -----------------------------
-  // QUESTIONS (ORDER MATTERS)
+  // QUESTIONS (UNCHANGED)
   // -----------------------------
   const questions = [
     // 1️⃣ YOU BETTER MATCH MY ENERGY
@@ -47,13 +52,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   ];
 
   // -----------------------------
-  // LOAD SAVED PROGRESS (LOCAL)
+  // LOAD SAVED PROGRESS
   // -----------------------------
   let currentIndex = parseInt(localStorage.getItem("tol_q_index")) || 0;
   let answers = JSON.parse(localStorage.getItem("tol_answers")) || [];
 
   // -----------------------------
-  // SUPABASE (NEW)
+  // SUPABASE (UNCHANGED)
   // -----------------------------
   const supabase = window.supabaseClient;
   let user = null;
@@ -67,20 +72,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   // RENDER QUESTION
   // -----------------------------
   function renderQuestion() {
+
     questionText.textContent = questions[currentIndex];
-    progressText.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+    progressText.textContent =
+      `Question ${currentIndex + 1} of ${questions.length}`;
+
+    // optional smooth animation
+    questionText.style.animation = "fadeIn 0.2s ease";
   }
 
   // -----------------------------
-  // SAVE ANSWER (LOCAL + DB)
+  // SAVE ANSWER (UNCHANGED CORE)
   // -----------------------------
   async function saveAnswer(value) {
-    // ✅ localStorage (unchanged)
+
+    // local save
     answers[currentIndex] = value;
     localStorage.setItem("tol_answers", JSON.stringify(answers));
 
-    // ✅ Supabase save (NEW, non-blocking)
+    // Supabase save — untouched
     if (supabase && user) {
+
       const { error } = await supabase
         .from("answers")
         .upsert({
@@ -91,30 +103,35 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (error) {
         console.error("Supabase save failed:", error.message);
-        // IMPORTANT: we DO NOT stop the UI
       }
     }
 
+    // auto next
     currentIndex++;
     localStorage.setItem("tol_q_index", currentIndex);
 
     if (currentIndex < questions.length) {
+
       renderQuestion();
+
     } else {
+
       completeQuestionnaire();
+
     }
   }
 
   // -----------------------------
-  // COMPLETE FLOW
+  // COMPLETE FLOW (UNCHANGED)
   // -----------------------------
   async function completeQuestionnaire() {
+
     console.log("Final answers:", answers);
 
     localStorage.removeItem("tol_q_index");
 
-    // mark done in users table (NEW)
     if (supabase && user) {
+
       await supabase
         .from("users")
         .update({ questions_done: true })
@@ -125,13 +142,39 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // -----------------------------
-  // BUTTON HANDLERS (UNCHANGED)
+  // BUTTON HANDLERS
   // -----------------------------
   agreeBtn.addEventListener("click", () => saveAnswer(1));
   disagreeBtn.addEventListener("click", () => saveAnswer(0));
 
   // -----------------------------
+  // ARROW NAVIGATION (NEW — FRONTEND ONLY)
+  // -----------------------------
+  arrowUp?.addEventListener("click", () => {
+
+    if (currentIndex > 0) {
+
+      currentIndex--;
+      localStorage.setItem("tol_q_index", currentIndex);
+      renderQuestion();
+    }
+
+  });
+
+  arrowDown?.addEventListener("click", () => {
+
+    if (currentIndex < questions.length - 1) {
+
+      currentIndex++;
+      localStorage.setItem("tol_q_index", currentIndex);
+      renderQuestion();
+    }
+
+  });
+
+  // -----------------------------
   // INIT
   // -----------------------------
   renderQuestion();
+
 });

@@ -1,7 +1,11 @@
 /* =========================
    ONBOARDING LAYOUT
 ========================= */
-
+body {
+  margin: 0;
+  background: #ff003c;
+  font-family: Arial, sans-serif;
+}
 .onboarding-container {
   min-height: 100vh;
   display: flex;
@@ -13,14 +17,14 @@
 
 .onboarding-title {
   font-size: 2.2rem;
-  color: #b11226;
+  color: #fcef63;
   margin-bottom: 0.4rem;
   text-align: center;
 }
 
 .onboarding-subtitle {
   font-size: 1rem;
-  color: #7a1f2b;
+  color: #f6ef37;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -67,49 +71,93 @@
    CARD
 ========================= */
 
+/* universal onboarding card size */
 .onboarding-card {
-  background: #ffffff;
   width: 100%;
-  max-width: 420px;
-  padding: 2rem;
-  border-radius: 22px;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
+  max-width: 420px; /* ← same width everywhere */
+  padding: 2.2rem;
+  border-radius: 26px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  background: #fffffcef;;
+  border: 3px solid #f5ec3fef;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.15);
 }
+
+
 
 /* =========================
    FORM ELEMENTS
 ========================= */
 
 .form-label {
-  display: block;
-  margin-bottom: 0.3rem;
-  font-size: 0.9rem;
-  color: #7a1f2b;
+  color: #b11226;
+  font-weight: 600;
+  margin-top: 12px;
+  width: 100%;
+  margin-top: 6px;
+  margin-bottom: 4px;
 }
+
 
 .form-input,
 .form-select {
+  border: 2px solid #ffd6dc;
+  background: #fff7f8;
   width: 100%;
-  padding: 0.8rem 1rem;
-  margin-bottom: 1.2rem;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+  margin-bottom: 6px;
+  padding: 12px 14px;
   border-radius: 14px;
-  border: 1px solid #f1b5bb;
-  font-size: 0.95rem;
-  outline: none;
+  background: #fff8f9;
 }
 
 .form-input:focus,
 .form-select:focus {
-  border-color: #e63946;
+  border-color: #f5ec3fef;
+  box-shadow: 0 0 0 4px rgba(245, 236, 63, 0.25);
 }
+
 
 /* =========================
    BUTTONS
 ========================= */
 
-.full-width {
+.primary-btn {
   width: 100%;
+  max-width: 460px; /* ← matches card */
+
+  margin-top: 22px;
+  align-self: center;
+
+  padding: 14px;
+  border-radius: 999px;
+
+  background: #b11226;
+  color: #f9f9f9;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
+
+
+/* hover lift */
+.primary-btn:hover {
+  background: #ffe96a;
+  transform: translateY(-2px);
+}
+
+/* press effect */
+.primary-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #d6c833;
+}
+
 
 /* =========================
    HELPERS
@@ -218,4 +266,240 @@
   display: flex;
   justify-content: center;
   margin-top: 1.5rem;
+}
+.primary-btn {
+  width: 100%;
+  max-width: 420px;
+  align-self: center;
+}
+.onboarding-card + .primary-btn {
+  margin-top: 22px;
+}
+/* phone view /*
+/* =========================
+   MOBILE RESPONSIVE FIX
+========================= */
+
+/* =========================
+   STRONG MOBILE COMPACT MODE
+========================= */
+
+@media (max-width: 480px) {
+
+  .onboarding-container {
+    padding: 0.8rem;
+  }
+
+  .onboarding-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .onboarding-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .onboarding-card {
+    max-width: 92vw;
+    padding: 1rem;
+    border-radius: 16px;
+    gap: 10px;
+  }
+
+  .form-label {
+    font-size: 0.8rem;
+    margin: 4px 0 2px;
+  }
+
+  .form-input,
+  .form-select {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    border-radius: 10px;
+  }
+
+  .pill-group {
+    gap: 6px;
+  }
+
+  .pill {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.75rem;
+  }
+
+  .primary-btn {
+    max-width: 92vw;
+    padding: 10px;
+    font-size: 0.9rem;
+    margin-top: 14px;
+  }
+
+}
+.question-title {
+  font-size: 2.2rem;
+  color: #fafafa;
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+
+.question-subtitle {
+  font-size: 1rem;
+  color: #fcfcfb;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+/*
+/* =====================
+   BACKGROUND
+===================== */
+
+/* =====================
+   BACKGROUND
+===================== */
+
+body{
+  margin:0;
+  background:
+    url("../images/main.png") center / cover no-repeat,
+    #ff003c;
+}
+
+/* ======================
+   TICKET LAYOUT
+====================== */
+
+.ticket-wrapper{
+  position:relative;
+
+  width:min(96vw, 820px);   /* controls ticket size */
+  margin:auto;
+}
+
+.ticket-img{
+  width:100%;
+  display:block;
+}
+
+
+/* text overlay */
+
+.ticket-text{
+  position:absolute;
+
+  /* align to dashed safe area */
+  top:50%;
+  left:50%;
+  bottom:0.3% ;
+  transform:translate(-50%, -50%);
+
+  width:48%;           /* ← narrower = avoids hearts */
+  max-width:420px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  text-align:center;
+}
+
+/* text styles */
+
+.ticket-title{
+  margin:0 0 14px 0;
+  font-size:22px;
+  font-weight:700;
+}
+
+.ticket-emoji{
+  font-size:52px;
+  margin-bottom:14px;
+}
+
+.ticket-desc{
+  margin:0 0 22px 0;
+
+  font-size:16px;
+  line-height:1.45;
+  color:#333;
+}
+
+
+
+/* button */
+
+.ticket-btn{
+ width: 80%;
+max-width: 450px; /* ← matches card */
+
+  margin-top: 3px;
+  align-self: center;
+  padding-left:25px;
+  padding: 14px 0;
+  border-radius: 999px;
+  border-color: #d52b3c;
+
+  background: #f5ec3fef;
+  color: #d52b3c;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+
+/* =========================
+   MOBILE — BIG TICKET MODE
+========================= */
+
+@media (max-width:480px){
+
+  /* ticket fills screen */
+  .ticket-wrapper{
+    width:98vw;
+  }
+
+  /* inner safe zone expands */
+  .ticket-text{
+    width:72%;
+  }
+
+  /* readable typography */
+
+  .ticket-title{
+    font-size:18px;
+    margin-bottom:10px;
+  }
+
+  .ticket-emoji{
+    font-size:42px;
+    margin-bottom:10px;
+  }
+
+  .ticket-desc{
+    font-size:14px;
+    margin-bottom:16px;
+  }
+
+  /* button scales */
+
+  .ticket-btn{
+    width:100%;
+    font-size:14px;
+    padding:12px 0;
+  }
+}
+
+.match-title {
+  font-size: 2.2rem;
+  color: #090909;
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+
+.match-subtitle {
+  font-size: 1rem;
+  color: #111111;
+  margin-bottom: 2rem;
+  text-align: center;
 }

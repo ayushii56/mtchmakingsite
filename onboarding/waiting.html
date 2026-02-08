@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Tug of Love 💖</title>
   <link rel="stylesheet" href="../assets/css/onboarding.css" />
 </head>
+
 <body>
 
-<div class="onboarding-container">
-  <div class="onboarding-card">
+  <div class="onboarding-container">
+  <div class="ticket-wrapper">
 
-    <h1 class="onboarding-title">You're in 💘</h1>
-    <p class="onboarding-subtitle">
-      We're finding your perfect Tug of Love match…
-    </p>
+  <img src="../assets/images/ticket3.png" class="ticket-img">
 
-    <div id="emojiDisplay" class="emoji-big center-emoji">💝</div>
+  <div class="ticket-text">
 
-    <p class="soft-text">
+    <p class="ticket-title">Your match emoji is</p>
+
+    <div id="emojiDisplay" class="ticket-emoji">💠</div>
+
+    <p class="ticket-desc">
       This is your identity for the event.  
       Your match will look for this emoji ✨
     </p>
 
-   <div class="match-btn-wrapper">
-  <button id="findMatchBtn" class="primary-btn match-btn">
-    Your Match 💖
-  </button>
-</div>
+    <button id="findMatchBtn" class="ticket-btn">
+      Find your match
+    </button>
 
   </div>
+
 </div>
 
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-<script src="../assets/js/supabase.js"></script>
-<script src="../assets/js/waiting.js"></script>
+
+
+  </div>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabase.js"></script>
+  <script src="../assets/js/waiting.js"></script>
 </body>
+
 </html>

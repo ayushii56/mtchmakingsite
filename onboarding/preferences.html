@@ -2,67 +2,68 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Preferences | Tug of Love</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preferences | Tug of Love</title>
 
-    <!-- Global + Onboarding Styles -->
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../assets/css/onboarding.css" />
+  <!-- Global + Onboarding Styles -->
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/onboarding.css" />
 </head>
 
 <body>
 
-    <div class="onboarding-container">
-  <div class="onboarding-card">
+  <div class="onboarding-container">
 
-    <h1 class="onboarding-title">Your Preferences 💘</h1>
+    <h1 class="onboarding-title">Your Preferences 💛</h1>
     <p class="onboarding-subtitle">
       This helps us find someone who truly fits you.
     </p>
 
     <form id="preferencesForm">
+      <div class="onboarding-card">
 
-      <label class="form-label">Sexual Orientation</label>
-      <select id="sexualOrientation" class="form-select">
-        <option value="">Select</option>
-        <option>Straight</option>
-        <option>Gay</option>
-        <option>Lesbian</option>
-        <option>Bisexual</option>
-        <option>Pansexual</option>
-        <option>Asexual</option>
-      </select>
+        <label class="form-label">Sexual Orientation</label>
+        <select id="sexualOrientation" class="form-select">
+          <option value="">Select</option>
+          <option>Straight</option>
+          <option>Gay</option>
+          <option>Lesbian</option>
+          <option>Bisexual</option>
+          <option>Pansexual</option>
+          <option>Asexual</option>
+        </select>
 
-      <label class="form-label">I am attracted to</label>
-      <div id="attractedGenders" class="pill-group">
-        <div class="pill" data-value="Man">Man</div>
-        <div class="pill" data-value="Woman">Woman</div>
-        <div class="pill" data-value="Non-binary">Non-binary</div>
+        <label class="form-label">I am attracted to</label>
+        <div id="attractedGenders" class="pill-group">
+          <div class="pill" data-value="Man">Man</div>
+          <div class="pill" data-value="Woman">Woman</div>
+          <div class="pill" data-value="Non-binary">Non-binary</div>
+        </div>
+
+        <label class="form-label">
+          Open to different orientations?
+        </label>
+        <select id="openOrientation" class="form-select">
+          <option value="">Select</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+
+        <button type="submit" class="primary-btn">
+          Continue 💘
+        </button>
       </div>
-
-      <label class="form-label">
-        Open to different orientations?
-      </label>
-      <select id="openOrientation" class="form-select">
-        <option value="">Select</option>
-        <option>Yes</option>
-        <option>No</option>
-      </select>
-
-      <button type="submit" class="primary-btn">
-        Continue 💖
-      </button>
-
     </form>
   </div>
-</div>
+  </div>
 
-</form>
-    </div>
+  </form>
+  </div>
 
-   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-<script src="../assets/js/supabase.js"></script>
-<script src="../assets/js/preferences.js"></script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabase.js"></script>
+  <script src="../assets/js/preferences.js"></script>
 </body>
+
 </html>

@@ -5,7 +5,7 @@
 // -----------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
-  const startBtn = document.getElementById("startBtn");
+  const startBtn = document.getElementById("cta");
 
   if (startBtn) {
     startBtn.addEventListener("click", () => {
@@ -15,6 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// cinematic button reveal
+document.addEventListener("DOMContentLoaded", () => {
+  const startBtn = document.getElementById("startBtn");
+
+  if (startBtn) {
+    startBtn.addEventListener("click", () => {
+      window.location.href = "auth/login.html";
+    });
+  }
+});
+
 
 
 // -----------------------------
