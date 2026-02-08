@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       await window.supabaseClient.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: "http://127.0.0.1:3000/onboarding/profile.html"
+          redirectTo: "https://mtchmakingsite.vercel.app/onboarding/profile.html"
         }
       });
 
