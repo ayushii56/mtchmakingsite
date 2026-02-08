@@ -1,137 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Start Quiz | Tug of Love</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Quiz | Tug of Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-<style>
+    /* ticket wrapper */
+    .ticket-wrap {
+      position: relative;
+      width: 95%;
+      max-width: 900px;
+    }
 
-body{
-  margin:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
-}
+    /* ticket image */
+    .ticket-img {
+      width: 100%;
+      display: block;
+    }
 
-/* ticket wrapper */
-.ticket-wrap{
-  position:relative;
-  width:95%;
-  max-width:900px;
-}
+    /* ticket text — responsive anchor */
+    .ticket-text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
 
-/* ticket image */
-.ticket-img{
-  width:100%;
-  display:block;
-}
+      font-family: "Playfair Display", Georgia, serif;
+      text-align: center;
+    }
 
-/* LEFT TEXT */
-/* LEFT TEXT — ticket typography */
+    /* headline */
+    .ticket-text h2 {
+      margin: 0;
+      font-size: 2.2vw;
+      font-weight: 500;
+      color: #333;
+    }
 
-.ticket-text{
-  position:absolute;
-  left:38%;
-  top:50%;
-  transform:translate(-50%, -50%);
-  width:52%;
+    /* big text */
+    .ticket-text .big {
+      display: block;
+      font-size: 4.5vw;
+      font-style: italic;
+      color: #ff004c;
+      margin: 0.8vw 0;
+    }
 
-  font-family:"Playfair Display", Georgia, serif;
+    /* paragraph */
+    .ticket-text p {
+      margin: 0 auto;
+      font-size: 1.3vw;
+      line-height: 1.4;
+      color: #555;
+      max-width: 95%;
+    }
 
-  text-align:center; /* ⭐ key line */
-}
+    /* clickable area */
+    .ticket-start {
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14vw;
+      height: 16vw;
+      cursor: pointer;
+    }
 
-/* headline */
-.ticket-text h2{
-  margin:0;
-  font-size:24px;
-  font-weight:500;
-  color:#333;
-}
+    /* MOBILE — override for phones */
+    @media(max-width:600px) {
 
-/* big text */
-.ticket-text .big{
-  display:block;
-  font-size:46px;
-  font-style:italic;
-  font-weight:400;
-  color:#ff004c;
+      .ticket-text {
+        width: 82%;
+        top: 52%;
+      }
 
-  margin:10px 0 14px;
-}
+      .ticket-text h2 {
+        font-size: 15px;
+        padding-right: 50px;
+      }
 
-/* paragraph */
-.ticket-text p{
-  margin:0 auto;
-  font-size:12.5px;
-  line-height:1.5;
-  color:#555;
+      .ticket-text .big {
+        font-size: 28px;
+        padding-right: 50px;
+      }
 
-  max-width:90%;
-}
+      .ticket-text p {
+        font-size: 5px;
+        padding-right: 50px;
+      }
 
+      .ticket-text pre {
+        font-size: 5px;
+        padding-right: 50px;
+      }
 
-.ticket-start {
-  position: absolute;
-
-  /* adjust placement */
-  right: 7%;
-  top: 50%;
-  transform: translateY(-50%);
-
-  width: 140px;
-  height: 160px;
-
-  cursor: pointer;
-}
-
-/* mobile scaling */
-@media(max-width:600px){
-
-.ticket-text h2{font-size:18px;}
-.ticket-text span{font-size:26px;}
-.ticket-text p{font-size:11px;}
-
-}
-
-</style>
+      .ticket-start {
+        width: 70px;
+        height: 90px;
+        right: 5%;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
-<div class="ticket-wrap">
-
-  <img src="../assets/images/ticket.png" class="ticket-img">
-
- <div class="ticket-text">
-
-  <h2>Find your perfect match in</h2>
-
-  <span class="big">21 questions</span>
-
-  <p>
-    Join our exclusive singles mixer this Valentine's Day.
-     Take our psychology-backed compatibility quiz to
-      get paired with your ideal partner for 
-                   the evening.
-  </p>
-
-</div>
-
-  <div class="ticket-start"
-       onclick="startQuiz()"></div>
-
-</div>
-
-<script>
-function startQuiz() {
-  window.location.href = "questions.html";
-}
-</script>
-
+  <div class="ticket-wrap"> 
+    <img src="../assets/images/ticket.png" class="ticket-img">
+    <div class="ticket-text">
+      <h2>Find your perfect match in</h2> <span class="big">21 questions</span>
+      <pre>Join our exclusive singles mixer this Valentine's Day.
+Take our psychology-backed compatibility quiz to
+    get paired with your ideal partner for the evening.</pre>
+    </div>
+    <div class="ticket-start" onclick="startQuiz()"></div>
+  </div>
+  <script> function startQuiz() { window.location.href = "questions.html"; } </script>
 </body>
+
 </html>
