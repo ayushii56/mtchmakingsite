@@ -73,13 +73,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   // -----------------------------
   function renderQuestion() {
 
-    questionText.textContent = questions[currentIndex];
-    progressText.textContent =
-      `Question ${currentIndex + 1} of ${questions.length}`;
+  questionText.textContent = questions[currentIndex];
+  progressText.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+
+  // ⭐ clear previous answer
+  document.getElementById("agreeBtn").checked = false;
+  document.getElementById("disagreeBtn").checked = false;
+
+}
 
     // optional smooth animation
     questionText.style.animation = "fadeIn 0.2s ease";
-  }
+
 
   // -----------------------------
   // SAVE ANSWER (UNCHANGED CORE)
