@@ -9,28 +9,36 @@
   <!-- Global + Auth Styles -->
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/auth.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
   <div class="auth-container">
-    <img src="../assets/images/main2.png" class="login-logo">
 
-    <h1 class="auth-title">Welcome to Tug of Love💛</h1>
+  <div class="auth-card">
+
+    <h1 class="auth-title">
+  Welcome to the<br>
+  Tug of Love<br>
+  💛
+</h1>
+
     <p class="auth-subtitle">
       Sign in to find your perfect Valentine match
     </p>
 
-    <div class="auth-card">
-      <button id="googleLogin" class="primary-btn full-width">
-        Continue with Google 💌
-      </button>
-    </div>
+    <button id="googleLogin" class="primary-btn">
+      Continue with Google 💌
+    </button>
 
     <p class="auth-footer">
       By continuing, you agree to keep things kind, respectful, and real 🌹
     </p>
+
   </div>
+
+</div>
 
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="../assets/js/supabase.js"></script>

@@ -1,30 +1,51 @@
+/* =========================
+GLOBAL
+========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: #ff003c;
   font-family: Arial, sans-serif;
+  min-height: 100vh;
 }
 
-.landing-body {
-  height: 100vh;
+
+/* =========================
+LANDING LAYOUT
+========================= */
+
+.landing {
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-
-/* container */
-.landing {
+  padding: 20px;
   text-align: center;
 }
+
+
+/* hero image */
+
 .hero-img {
-  width: min(80vw, 800px);
+  width: clamp(260px, 75vw, 720px);
   height: auto;
   display: block;
-  margin: auto;
+  margin: 0 auto;
+  animation: popIn 0.9s ease;
 }
 
 
-/* entrance animation */
+/* =========================
+ANIMATION
+========================= */
+
 @keyframes popIn {
   from {
     opacity: 0;
@@ -36,20 +57,26 @@ body {
   }
 }
 
-/* CTA button */
+
+/* =========================
+CTA BUTTON
+========================= */
+
 .cta {
-  margin-top: 40px;
-  padding: 16px 36px;
-  font-size: 18px;
+  margin-top: 36px;
+  padding: 14px 34px;
+  font-size: clamp(16px, 2.8vw, 18px);
   border: none;
   border-radius: 999px;
   background: #f5ec3fef;
   color: #ff003c;
   font-weight: bold;
   cursor: pointer;
+
   opacity: 0;
   transform: translateY(20px);
-  transition: 0.5s;
+  transition: 0.5s ease;
+
   will-change: transform, opacity;
 }
 
@@ -61,43 +88,43 @@ body {
 .cta:hover {
   background: #ffe3ea;
 }
-/* container center */
+
+
+/* =========================
+LOGIN (unchanged styles — preserved)
+========================= */
+
 .login-container {
   text-align: center;
   color: #ffe3ea;
 }
 
-/* logo */
 .login-logo {
   width: min(70vw, 700px);
   margin-bottom: 20px;
   animation: popIn 0.8s ease;
 }
 
-/* heading */
 .login-container h1 {
   color: #f5ec3fef;
   font-size: 32px;
   margin-bottom: 10px;
 }
 
-/* subtitle */
 .login-container p {
   color: #ffe3ea;
   opacity: 0.9;
   margin-bottom: 30px;
 }
 
-/* sign-in box */
 .login-box {
   background: white;
   border-radius: 20px;
   padding: 30px;
-  width: 320px;
+  width: min(90vw, 320px);
   margin: auto;
 }
 
-/* button */
 .login-box button {
   width: 100%;
   padding: 14px;
@@ -113,4 +140,12 @@ body {
 .login-box button:hover {
   background: #ffe3ea;
 }
+/* =========================
+MOBILE — HERO IMAGE BOOST
+========================= */
 
+@media (max-width: 900px) {
+  .hero-img {
+    width: 99vw;
+  }
+}

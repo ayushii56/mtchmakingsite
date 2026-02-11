@@ -2,52 +2,61 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Profile | Tug of Love</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Profile | Tug of Love</title>
 
-    <!-- Global + Onboarding Styles -->
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../assets/css/onboarding.css" />
+  <!-- Global + Onboarding Styles -->
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/onboarding.css" />
 </head>
 
 <body>
 
-    <div class="onboarding-container">
-        <h1 class="onboarding-title">Let’s get to know you 💛</h1>
-        <p class="onboarding-subtitle">
-            Just the basics — we’ll take it slow.
-        </p>
+  <div class="preferences-page">
 
-        <form id="profileForm" class="onboarding-card">
+    <div class="pref-center">
 
-            <label class="form-label">Your Name</label>
-            <input type="text" id="name" class="form-input" placeholder="Enter your name" required />
+      <div class="pref-ticket">
 
-            <label class="form-label">Phone Number</label>
-            <input type="tel" id="phone" class="form-input" placeholder="Enter your phone number" required />
+        <div class="pref-content">
 
-            <label class="form-label">Gender Identity</label>
-            <select id="gender" class="form-select" required>
-                <option value="">Select one</option>
-                <option value="Man">Man</option>
-                <option value="Woman">Woman</option>
-                <option value="Non-binary">Non-binary</option>
-                <option value="Self-describe">Prefer to self-describe</option>
+          <h1 class="pref-title">
+            Let’s get to know<br>you 💛
+          </h1>
+          <p class="pref-sub">Just the basics — we’ll take it slow.</p>
+
+          <form id="profileForm" class="pref-form">
+
+            <input type="text" id="name" class="pref-input" placeholder="Your name" required>
+
+            <input type="tel" id="phone" class="pref-input" placeholder="Phone number" required>
+
+            <select id="gender" class="pref-input" required>
+              <option value="">Gender identity</option>
+              <option>Man</option>
+              <option>Woman</option>
+              <option>Non-binary</option>
+              <option>Prefer to self-describe</option>
             </select>
 
-            <input type="text" id="customGender" class="form-input hidden"
-                placeholder="Describe your gender identity" />
+          </form>
 
-            <button type="submit" class="primary-btn full-width">
-                Continue 💘
-            </button>
+        </div>
 
-        </form>
+        <button type="submit" form="profileForm" class="pref-btn">
+          Continue 💘
+        </button>
+
+      </div>
+
     </div>
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-    <script src="../assets/js/supabase.js"></script>
-    <script src="../assets/js/profile.js"></script>
+
+  </div>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabase.js"></script>
+  <script src="../assets/js/profile.js"></script>
 
 </body>
+
 </html>

@@ -2,65 +2,67 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Preferences | Tug of Love</title>
 
-  <!-- Global + Onboarding Styles -->
-  <link rel="stylesheet" href="../assets/css/main.css" />
-  <link rel="stylesheet" href="../assets/css/onboarding.css" />
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/preferences.css">
 </head>
 
-<body>
+<body class="preferences-page">
 
-  <div class="onboarding-container">
+  <div class="pref-center">
 
-    <h1 class="onboarding-title">Your Preferences 💛</h1>
-    <p class="onboarding-subtitle">
-      This helps us find someone who truly fits you.
-    </p>
+    <div class="pref-ticket">
 
-    <form id="preferencesForm">
-      <div class="onboarding-card">
+      <div class="pref-content">
 
-        <label class="form-label">Sexual Orientation</label>
-        <select id="sexualOrientation" class="form-select">
-          <option value="">Select</option>
-          <option>Straight</option>
-          <option>Gay</option>
-          <option>Lesbian</option>
-          <option>Bisexual</option>
-          <option>Pansexual</option>
-          <option>Asexual</option>
-        </select>
+        <h1 class="pref-title">Your <br>Preferences 💛</h1>
 
-        <label class="form-label">I am attracted to </label>
-        <div id="attractedGenders" class="pill-group">
-          <div class="pill" data-value="Man">Man</div>
-          <div class="pill" data-value="Woman">Woman</div>
-          <div class="pill" data-value="Non-binary">Non-binary</div>
-          <p>
-            (you can select multiple options)</p>
-        </div>
+    
 
-        <label class="form-label">
-          Open to different orientations?
-        </label>
-        <select id="openOrientation" class="form-select">
-          <option value="">Select</option>
-          <option>Yes</option>
-          <option>No</option>
-        </select>
+        <form id="preferencesForm" class="pref-form">
 
-        <button type="submit" class="primary-btn">
-          Continue 💘
-        </button>
+          <select class="pref-input">
+            <option>Select sexual orientation</option>
+            <option>Straight</option>
+            <option>Gay</option>
+            <option>Lesbian</option>
+            <option>Bisexual</option>
+          </select>
+
+          <label class="form-label">I am attracted to</label>
+
+          <div id="attractedGenders" class="pref-pill-group">
+
+            <div class="pref-pill" data-value="Man">Man</div>
+            <div class="pref-pill" data-value="Woman">Woman</div>
+            <div class="pref-pill" data-value="Non-binary">Non-binary</div>
+
+          </div>
+
+          <input type="hidden" id="attractedInput" name="attracted">
+          <p>(you can select multiple options)</p>
+
+
+          <select class="pref-input">
+            <option>Open to different orientations?</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+
+        </form>
+
       </div>
-    </form>
-  </div>
-  </div>
 
-  </form>
+      <button form="preferencesForm" class="pref-btn">
+        Continue 💘
+      </button>
+
+    </div>
+
   </div>
 
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>

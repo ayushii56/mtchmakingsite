@@ -1,146 +1,169 @@
-/* =========================
-   AUTH PAGE LAYOUT
-========================= */
+/* ================= BACKGROUND ================= */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("../images/bg.png") center / cover no-repeat;
+  filter: blur(8px);
+  transform: scale(1.05);
+  z-index: -1;
+}
+
+
+/* ================= CENTER PAGE ================= */
 
 .auth-container {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+}
+
+
+/* =================================================
+📱 MOBILE — vertical ticket
+================================================= */
+
+.auth-card {
+  position: relative;
+
+  width: min(92vw, 420px);
+  aspect-ratio: 3 / 5;
+
+  background:
+    url("../images/ticketp.png")
+    center / contain no-repeat;
+}
+
+/* content positioning */
+
+.auth-card > * {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
 .auth-title {
-  font-size: 2.4rem;
-  color: #fff835eb;
-  margin-bottom: 0.5rem;
+  top: 16%;              /* was higher → reduces gap */
+  width: 78%;
+
+  font-family: "DM Serif Display", serif;
+
+  font-size: clamp(30px, 7vw, 44px);
+  line-height: 1.05;
+
+  color: #d32f2f;
+  text-align: center;
+}
+.auth-subtitle {
+  top: 34%;              /* was ~40% → closes gap */
+  width: 72%;
+
+  font-size: clamp(16px, 4vw, 20px);
+  line-height: 1.2;
+
+  text-align: center;
+}
+.primary-btn {
+  top: 78%;
+
+  width: 58%;          /* ↓ smaller so it fits ticket */
+  max-width: 240px;    /* safety cap */
+
+  padding: 12px 16px;  /* tighter horizontal padding */
+
+  border-radius: 999px;
+  border: none;
+
+  background: linear-gradient(#ff6f9d, #ff2f6d);
+  color: white;
+
+  font-weight: bold;
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.auth-footer {
+  top: 48%;
+  width: 60%;
+
+  font-size: 13px;
+  line-height: 1.3;
+
+  text-align: center;
+  color: #444;
+}
+
+
+/* =================================================
+💻 DESKTOP — horizontal ticket
+================================================= */
+
+@media (min-width: 900px) {
+
+/* ticket stays same */
+.auth-card {
+  width: min(1150px, 95vw);
+  aspect-ratio: 3.6 / 1;
+  background: url("../images/ticket2.png") center / contain no-repeat;
+}
+
+
+/* ===== TEXT ZONE — LEFT SIDE ===== */
+
+.auth-title {
+  top: 25%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  width: 36%;
+
+  font-size: 34px;
+  line-height: 1.05;
   text-align: center;
 }
 
 .auth-subtitle {
-  font-size: 1rem;
-  color: #e8e50a;
-  margin-bottom: 2rem;
+  top: 60%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  width: 34%;
+
+  font-size: 18px;
   text-align: center;
 }
-
-/* =========================
-   AUTH CARD
-========================= */
-
-.auth-card {
-  background: #faf7f7f0;
-  width: 100%;
-  max-width: 380px;
- 
-  border-radius: 22px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* =========================
-   INPUTS
-========================= */
-
-.auth-input {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  margin: 1rem 0;
-  border-radius: 14px;
-  border: 1px solid #f1b5bb;
-  font-size: 0.95rem;
-  outline: none;
-}
-
-.auth-input:focus {
-  border-color: #e63946;
-}
-
-/* =========================
-   BUTTON VARIANTS
-========================= */
-
-/* =========================
-   PRIMARY THEME BUTTON
-========================= */
-
-.primary-btn {
-  background: #f5ec3fef;
-  color: #ff003c;
-  border: none;
-  padding: 14px 20px;
-  border-radius: 999px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 6px 0 #d6c833;
-}
-
-/* hover */
-.primary-btn:hover {
-  background: #ffe96a;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 0 #d6c833;
-}
-
-/* click press */
-.primary-btn:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 #d6c833;
-}
-
-
-.full-width {
-  width: 100%;
-}
-
-.secondary-btn {
-  background: #fff;
-  color: #b11226;
-  border: 2px solid #e63946;
-  padding: 0.8rem 2rem;
-  border-radius: 30px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.secondary-btn:hover {
-  background: #ffe6ea;
-}
-
-/* =========================
-   DIVIDER
-========================= */
-
-.divider {
-  display: flex;
-  align-items: center;
-  margin: 1.5rem 0;
-}
-
-.divider span {
-  margin: 0 0.6rem;
-  color: #7a1f2b;
-  font-size: 0.85rem;
-}
-
-.divider::before,
-.divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #f1b5bb;
-}
-
-/* =========================
-   FOOTER TEXT
-========================= */
 
 .auth-footer {
-  margin-top: 1.5rem;
-  font-size: 0.85rem;
-  color: #7a1f2b;
+  top: 80%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  width: 34%;
+
+  font-size: 14px;
   text-align: center;
+}
+
+
+/* ===== ROTATED BUTTON — RIGHT NOTCH ===== */
+
+.primary-btn {
+  top: 50%;
+  left: 72%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+
+  width: auto;
+  padding: 18px 28px;
+
+  white-space: nowrap;
+}
+
 }

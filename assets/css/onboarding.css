@@ -1,505 +1,213 @@
-/* =========================
-   ONBOARDING LAYOUT
-========================= */
-body {
-  margin: 0;
-  background: #ff003c;
-  font-family: Arial, sans-serif;
-}
-.onboarding-container {
+/* ================= BACKGROUND ================= */
+.preferences-page {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
-}
-
-.onboarding-title {
-  font-size: 2.2rem;
-  color: #fcef63;
-  margin-bottom: 0.4rem;
-  text-align: center;
-}
-
-.onboarding-subtitle {
-  font-size: 1rem;
-  color: #f6ef37;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-.helper-text {
-  font-size: 0.8rem;
-  color: #7a1f2b;
-  margin-top: -0.6rem;
-  margin-bottom: 1.2rem;
-}
-/* =========================
-   PILL MULTI SELECT
-========================= */
-
-.pill-group {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.2rem;
-}
-
-.pill {
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
-  border: 1px solid #f1b5bb;
-  color: #7a1f2b;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.25s ease;
-  user-select: none;
-}
-
-.pill:hover {
-  background: #ffe6ea;
-}
-
-.pill.selected {
-  background: #e63946;
-  color: #fff;
-  border-color: #e63946;
-}
-
-
-/* =========================
-   CARD
-========================= */
-
-/* universal onboarding card size */
-.onboarding-card {
-  width: 100%;
-  max-width: 420px; /* ← same width everywhere */
-  padding: 2.2rem;
-  border-radius: 26px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-
-  background: #fffffcef;;
-  border: 3px solid #f5ec3fef;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.15);
-}
-
-
-
-/* =========================
-   FORM ELEMENTS
-========================= */
-
-.form-label {
-  color: #b11226;
-  font-weight: 600;
-  margin-top: 12px;
-  width: 100%;
-  margin-top: 6px;
-  margin-bottom: 4px;
-}
-
-
-.form-input,
-.form-select {
-  border: 2px solid #ffd6dc;
-  background: #fff7f8;
-  width: 100%;
-  box-sizing: border-box;
-  transition: all 0.25s ease;
-  margin-bottom: 6px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: #fff8f9;
-}
-
-.form-input:focus,
-.form-select:focus {
-  border-color: #f5ec3fef;
-  box-shadow: 0 0 0 4px rgba(245, 236, 63, 0.25);
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.primary-btn {
-  width: 100%;
-  max-width: 460px; /* ← matches card */
-
-  margin-top: 22px;
-  align-self: center;
-
-  padding: 14px;
-  border-radius: 999px;
-
-  background: #b11226;
-  color: #f9f9f9;
-  font-weight: bold;
-
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-
-/* hover lift */
-.primary-btn:hover {
-  background: #ffe96a;
-  transform: translateY(-2px);
-}
-
-/* press effect */
-.primary-btn:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 #d6c833;
-}
-
-
-/* =========================
-   HELPERS
-========================= */
-
-.hidden {
-  display: none;
-}
-/* 🔥 CLICK FIX */
-.pill-group,
-.pill {
   position: relative;
-  z-index: 9999;
-  pointer-events: auto !important;
 }
 
-.pill {
-  cursor: pointer;
-  user-select: none;
+.preferences-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("../images/bg.png") center / cover no-repeat;
+  filter: blur(18px);
+  transform: scale(1.1);
+  z-index: -1;
 }
 
-.pill.selected {
-  background: #e63946;
-  color: #fff;
-}
-.emoji-big {
-  font-size: 4rem;
-  margin: 1.5rem 0;
-}
-
-.soft-text {
-  font-size: 0.85rem;
-  color: #a04a54;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-/* ===== MATCH PAGE ===== */
-
-.match-card {
-  text-align: center;
-}
-
-.match-block {
-  margin: 1rem 0;
-}
-
-.heart-divider {
-  font-size: 2rem;
-  margin: 0.5rem 0;
-}
-
-.compatibility-box {
-  margin: 1.5rem 0;
-  padding: 1rem;
-  border-radius: 18px;
-  background: #fff1f3;
-}
-
-.compatibility-box span {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #e63946;
-}
-
-.compatibility-box p {
-  font-size: 0.85rem;
-  margin: 0;
-  color: #a04a54;
-}
-
-.love-quote {
-  font-size: 0.9rem;
-  color: #7a1f2b;
-  margin-top: 1.5rem;
-  font-style: italic;
-}
-.center-emoji {
+/* ================= CENTER ================= */
+.pref-center {
+  width: 100%;
   display: flex;
   justify-content: center;
+}
+
+/* ================= TICKET ================= */
+.pref-ticket {
+  position: relative;
+}
+
+/* ================= CONTENT ================= */
+.pref-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  margin: 1.5rem 0;
-  font-size: 4rem;
-}
-.match-btn {
-  background: linear-gradient(135deg, #e63946, #ff6b81);
-  color: #fff;
-  border: none;
-  border-radius: 999px;
-  padding: 0.75rem 1.8rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.25);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.match-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(230, 57, 70, 0.35);
-}
-
-.match-btn:active {
-  transform: translateY(0);
-}
-.match-btn-wrapper {
-  display: flex;
   justify-content: center;
-  margin-top: 1.5rem;
+  padding: 10%;
+  text-align: center;
 }
-.primary-btn {
+
+/* ================= TEXT ================= */
+.pref-title {
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(26px, 5vw, 40px);
+  color: #ff2f67;
+  margin-bottom: 8px;
+}
+
+.pref-sub {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+/* ================= FORM ================= */
+.pref-form {
   width: 100%;
   max-width: 420px;
-  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
-.onboarding-card + .primary-btn {
-  margin-top: 22px;
+
+.pref-input {
+  padding: 6px 12px;
+  border-radius: 14px;
+  border: 2px solid #f3b3be;
+  font-size: 14px;
+  outline: none;
+  background: rgba(255,255,255,0.9);
 }
-/* phone view /*
-/* =========================
-   MOBILE RESPONSIVE FIX
-========================= */
 
-/* =========================
-   STRONG MOBILE COMPACT MODE
-========================= */
+.pref-input:focus {
+  border-color: #ff2f67;
+}
 
-@media (max-width: 480px) {
+/* ================= BUTTON ================= */
+.pref-btn {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  padding: 12px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(#ff4b87,#ff1f5a);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
 
-  .onboarding-container {
-    padding: 0.8rem;
+/* ================= DESKTOP ================= */
+@media (min-width: 900px) {
+  .pref-ticket {
+    width: min(1500px, 96vw);
+    aspect-ratio: 3.6 / 1;
+    background: url("../images/ticket2.png") center / contain no-repeat;
   }
 
-  .onboarding-title {
-    font-size: 1.4rem;
-    margin-bottom: 0.2rem;
+  .pref-content {
+    position: absolute;
+    top: 46%;
+    left: 48%;                   /* LEFT SHIFTED */
+    transform: translate(-50%, -50%);
+    width: 40%;
   }
 
-  .onboarding-subtitle {
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
+  .pref-title {
+    font-size: 40px;
+    max-width: 520px;
+    margin-inline: auto;
   }
 
-  .onboarding-card {
-    max-width: 92vw;
-    padding: 1rem;
-    border-radius: 16px;
+  .pref-sub {
+    margin-bottom: 22px;
+    margin-inline: auto;
+  }
+
+  .pref-form {
+    max-width: 480px;
+    gap: 18px;
+    align-items: center;
+  }
+
+  .pref-btn {
+  position: absolute;
+
+  left: 66%;
+  top: 50%;
+
+  transform: rotate(-90deg) translateY(-50%);
+
+  width: 380px;
+  height: 42px;
+  font-size: 13px;
+}
+  .pref-pill-group {
+    justify-content: center;
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 899px) {
+  .pref-ticket {
+    width: 94vw;
+    max-width: 460px;
+    aspect-ratio: 3 / 5;
+    background: url("../images/ticketp.png") center / contain no-repeat;
+  }
+
+  .pref-content {
+    inset: auto;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 66%;
+    max-width: 240px;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .pref-form {
+    width: 100%;
     gap: 10px;
   }
 
-  .form-label {
-    font-size: 0.8rem;
-    margin: 4px 0 2px;
-  }
-
-  .form-input,
-  .form-select {
-    padding: 8px 10px;
-    font-size: 0.85rem;
-    border-radius: 10px;
-  }
-
-  .pill-group {
+  .pref-pill-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 6px;
+    width: 100%;
+    padding: 0 6px;
   }
 
-  .pill {
-    padding: 0.35rem 0.7rem;
-    font-size: 0.75rem;
+  .pref-pill {
+    font-size: 11px;
+    padding: 4px 8px;
   }
 
-  .primary-btn {
-    max-width: 92vw;
-    padding: 10px;
-    font-size: 0.9rem;
-    margin-top: 14px;
+  .pref-btn {
+    width: 110px !important;     /* SMALLER - FITS INSIDE TICKET */
+    padding: 4px 9px;
+    bottom: 10%;
+    font-size: 12px;
+    max-width: 120px;
   }
 
-}
-.question-title {
-  font-size: 2.2rem;
-  color: #fafafa;
-  margin-bottom: 0.4rem;
-  text-align: center;
-}
-
-.question-subtitle {
-  font-size: 1rem;
-  color: #fcfcfb;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-/*
-/* =====================
-   BACKGROUND
-===================== */
-
-/* =====================
-   BACKGROUND
-===================== */
-
-body{
-  margin:0;
-  background:
-    url("../images/main.png") center / cover no-repeat,
-    #ff003c;
-}
-
-/* ======================
-   TICKET LAYOUT
-====================== */
-
-.ticket-wrapper{
-  position:relative;
-
-  width:min(96vw, 820px);   /* controls ticket size */
-  margin:auto;
-}
-
-.ticket-img{
-  width:100%;
-  display:block;
-}
-
-
-/* text overlay */
-
-.ticket-text{
-  position:absolute;
-
-  /* align to dashed safe area */
-  top:50%;
-  left:50%;
-  bottom:0.3% ;
-  transform:translate(-50%, -50%);
-
-  width:48%;           /* ← narrower = avoids hearts */
-  max-width:420px;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-
-  text-align:center;
-}
-
-/* text styles */
-
-.ticket-title{
-  margin:0 0 14px 0;
-  font-size:22px;
-  font-weight:700;
-}
-
-.ticket-emoji{
-  font-size:52px;
-  margin-bottom:14px;
-}
-
-.ticket-desc{
-  margin:0 0 22px 0;
-
-  font-size:16px;
-  line-height:1.45;
-  color:#333;
-}
-
-
-
-/* button */
-
-.ticket-btn{
- width: 80%;
-max-width: 450px; /* ← matches card */
-
-  margin-top: 3px;
-  align-self: center;
-  padding-left:25px;
-  padding: 14px 0;
-  border-radius: 999px;
-  border-color: #d52b3c;
-
-  background: #f5ec3fef;
-  color: #d52b3c;
-  font-weight: bold;
-
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-
-/* =========================
-   MOBILE — BIG TICKET MODE
-========================= */
-
-@media (max-width:480px){
-
-  /* ticket fills screen */
-  .ticket-wrapper{
-    width:98vw;
+  .pref-title {
+    margin-bottom: 4px;
   }
 
-  /* inner safe zone expands */
-  .ticket-text{
-    width:72%;
+  .pref-sub {
+    margin-bottom: 12px;
   }
-
-  /* readable typography */
-
-  .ticket-title{
-    font-size:18px;
-    margin-bottom:10px;
-  }
-
-  .ticket-emoji{
-    font-size:42px;
-    margin-bottom:10px;
-  }
-
-  .ticket-desc{
-    font-size:14px;
-    margin-bottom:16px;
-  }
-
-  /* button scales */
-
-  .ticket-btn{
-    width:100%;
-    font-size:14px;
-    padding:12px 0;
-  }
+  .pref-input {
+  padding: 4px 10px;
+  border-radius: 14px;
+  border: 2px solid #f3b3be;
+  font-size: 14px;
+  outline: none;
+  background: rgba(255,255,255,0.9);
 }
 
-.match-title {
-  font-size: 2.2rem;
-  color: #090909;
-  margin-bottom: 0.4rem;
-  text-align: center;
+.pref-input:focus {
+  border-color: #ff2f67;
 }
-
-.match-subtitle {
-  font-size: 1rem;
-  color: #111111;
-  margin-bottom: 2rem;
-  text-align: center;
 }

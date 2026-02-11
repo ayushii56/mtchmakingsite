@@ -3,6 +3,21 @@ console.log("profile.js loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("profileForm");
+  const phoneInput = document.getElementById("phone");
+
+  phoneInput.addEventListener("input", () => {
+    // allow numbers only
+    phoneInput.value = phoneInput.value.replace(/\D/g, "");
+
+    // enforce max 10 digits
+    if (phoneInput.value.length > 10) {
+      phoneInput.value = phoneInput.value.slice(0, 10);
+    }
+  });
+if (phoneInput.value.length !== 10) {
+  alert("Phone number must be exactly 10 digits");
+  return;
+}
 
   if (!form) {
     console.error("profileForm not found");
@@ -44,10 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (error) {
-  console.error("FULL ERROR:", JSON.stringify(error, null, 2));
-  alert(JSON.stringify(error, null, 2));
-  return;
-}
+      console.error("FULL ERROR:", JSON.stringify(error, null, 2));
+      alert(JSON.stringify(error, null, 2));
+      return;
+    }
 
     window.location.href = "preferences.html";
   });

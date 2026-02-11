@@ -2,131 +2,229 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Start Quiz | Tug of Love</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/main.css">
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Quiz | Tug of Love</title>
 
-    /* ticket wrapper */
-    .ticket-wrap {
-      position: relative;
-      width: 95%;
-      max-width: 900px;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
 
-    /* ticket image */
-    .ticket-img {
-      width: 100%;
-      display: block;
-    }
+<style>
 
-    /* ticket text — responsive anchor */
-    .ticket-text {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 70%;
+/* =========================
+GLOBAL BACKGROUND + LAYOUT
+========================= */
 
-      font-family: "Playfair Display", Georgia, serif;
-      text-align: center;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
 
-    /* headline */
-    .ticket-text h2 {
-      margin: 0;
-      font-size: 2.2vw;
-      font-weight: 500;
-      color: #333;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    /* big text */
-    .ticket-text .big {
-      display: block;
-      font-size: 4.5vw;
-      font-style: italic;
-      color: #ff004c;
-      margin: 0.8vw 0;
-    }
+  background: url("../assets/images/bg.png") center / cover no-repeat;
+  position: relative;
+  overflow: hidden;
+}
 
-    /* paragraph */
-    .ticket-text p {
-      margin: 0 auto;
-      font-size: 1.3vw;
-      line-height: 1.4;
-      color: #555;
-      max-width: 95%;
-    }
+/* blur layer */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(8px);
+  z-index: 0;
+}
 
-    /* clickable area */
-    .ticket-start {
-      position: absolute;
-      right: 6%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 14vw;
-      height: 16vw;
-      cursor: pointer;
-    }
+/* =========================
+TICKET WRAPPER
+========================= */
 
-    /* MOBILE — override for phones */
-    @media(max-width:600px) {
+.ticket-wrap {
+  position: relative;
+  width: 95%;
+  max-width: 900px;
+  z-index: 1;
+}
 
-      .ticket-text {
-        width: 82%;
-        top: 52%;
-      }
+.ticket-img {
+  width: 100%;
+  display: block;
+}
 
-      .ticket-text h2 {
-        font-size: 15px;
-        padding-right: 50px;
-      }
+/* =========================
+TICKET TEXT — DESKTOP
+========================= */
 
-      .ticket-text .big {
-        font-size: 28px;
-        padding-right: 50px;
-      }
+.ticket-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
 
-      .ticket-text p {
-        font-size: 5px;
-        padding-right: 50px;
-      }
+  font-family: "Playfair Display", Georgia, serif;
+  text-align: center;
+}
 
-      .ticket-text pre {
-        font-size: 5px;
-        padding-right: 50px;
-      }
+.ticket-text h2 {
+  margin: 0;
+  font-size: 2.2vw;
+  font-weight: 500;
+  color: #333;
+}
 
-      .ticket-start {
-        width: 70px;
-        height: 90px;
-        right: 5%;
-      }
-    }
-  </style>
+.ticket-text .big {
+  display: block;
+  font-size: 4.5vw;
+  font-style: italic;
+  color: #ff004c;
+  margin: 0.8vw 0;
+}
+
+.ticket-text p {
+  margin: 0 auto;
+  font-size: 1.3vw;
+  line-height: 1.4;
+  color: #555;
+  max-width: 95%;
+}
+
+/* clickable start area */
+.ticket-start {
+  position: absolute;
+  right: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14vw;
+  height: 16vw;
+  cursor: pointer;
+}
+
+/* =========================
+MOBILE LAYOUT
+========================= */
+
+@media (max-width:600px) {
+
+  body {
+    display: block;
+  }
+
+ .ticket-wrap {
+  width: 100vw;
+  height: auto;
+}
+
+  /* phone ticket image */
+  .ticket-img {
+  content: url("../assets/images/ticketp.png");
+  width: 100%;
+  height: auto;
+  display: block;
+}
+  .ticket-text {
+    width: 78%;
+    top: 55%;
+  }
+
+  .ticket-text h2 {
+    font-size: 16px;
+    padding-right: 40px;
+  }
+
+  .ticket-text .big {
+    font-size: 30px;
+    padding-right: 40px;
+  }
+
+  .ticket-text p {
+    font-size: 11px;
+    line-height: 1.3;
+    padding-right: 40px;
+  }
+
+  .ticket-start {
+    width: 72px;
+    height: 95px;
+    right: 6%;
+    top: 55%;
+  }
+  @media (max-width:600px) {
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ticket-wrap {
+    width: 100vw;
+    max-width: none;
+  }
+
+  .ticket-img {
+    content: url("../assets/images/ticketp.png");
+    width: 100vw;
+    height: auto;
+  }
+
+}
+/* ===== PHONE — TRUE FULL SCREEN FIX ===== */
+}
+@media (max-width:600px) {
+
+  body {
+    display: block !important;
+    margin: 0;
+  }
+
+  .ticket-wrap {
+    width: 100vw;
+    max-width: none;
+    margin: 0 auto;
+  }
+
+  .ticket-img {
+    content: url("../assets/images/ticketp.png");
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
-  <div class="ticket-wrap"> 
-    <img src="../assets/images/ticket.png" class="ticket-img">
-    <div class="ticket-text">
-      <h2>Find your perfect match in</h2> <span class="big">21 questions</span>
-      <pre>Join our exclusive singles mixer this Valentine's Day.
-Take our psychology-backed compatibility quiz to
-    get paired with your ideal partner for the evening.</pre>
-    </div>
-    <div class="ticket-start" onclick="startQuiz()"></div>
-  </div>
-  <script> function startQuiz() { window.location.href = "questions.html"; } </script>
-</body>
 
+<div class="ticket-wrap">
+
+  <!-- desktop ticket default -->
+  <img src="../assets/images/ticket2.png" class="ticket-img">
+
+  <div class="ticket-text">
+    <h2>Find your perfect match in</h2>
+    <span class="big">21 questions</span>
+
+    <p>
+      Join our exclusive singles mixer this Valentine's Day.<br>
+      Take our psychology-backed compatibility quiz to get paired<br>
+      with your ideal partner for the evening.
+    </p>
+  </div>
+
+  <div class="ticket-start" onclick="startQuiz()"></div>
+
+</div>
+
+<script>
+function startQuiz() {
+  window.location.href = "questions.html";
+}
+</script>
+
+</body>
 </html>
