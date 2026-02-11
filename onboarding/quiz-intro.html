@@ -2,229 +2,279 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Start Quiz | Tug of Love</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Quiz | Tug of Love</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
 
-<style>
+  <style>
+    /* ================= GLOBAL BACKGROUND ================= */
 
-/* =========================
-GLOBAL BACKGROUND + LAYOUT
-========================= */
+    body {
+      margin: 0;
+      min-height: 100vh;
 
-body {
-  margin: 0;
-  min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+      background: url("../assets/images/bg.png") center / cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
 
-  background: url("../assets/images/bg.png") center / cover no-repeat;
-  position: relative;
-  overflow: hidden;
-}
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(8px);
+      z-index: 0;
+    }
 
-/* blur layer */
-body::before {
-  content: "";
+    /* ================= TICKET WRAPPER ================= */
+
+    .ticket-wrap {
+      position: relative;
+      width: 95%;
+      max-width: 900px;
+      z-index: 1;
+    }
+
+    .ticket-img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ================= TEXT — DESKTOP ================= */
+
+    .ticket-text {
+      position: absolute;
+      left: 40%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      font-family: "Playfair Display", serif;
+      text-align: center;
+    }
+
+    .ticket-text h2 {
+      margin: 0;
+      font-size: 2vw;
+      color: #333;
+    }
+
+    .ticket-text .big {
+      display: block;
+      font-size: 4.2vw;
+      font-style: italic;
+      color: #ff004c;
+      margin: 0.8vw 0;
+    }
+
+    .ticket-text p {
+      margin: 0 auto;
+      font-size: 1.1vw;
+      line-height: 1.4;
+      color: #555;
+    }
+
+    .ticket-start {
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14vw;
+      height: 16vw;
+      cursor: pointer;
+    }
+
+    /* ================= MOBILE — REAL SCALING ================= */
+
+    @media (max-width:600px) {
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 20px;
+        overflow-x: hidden;
+      }
+
+      .ticket-wrap {
+        width: 82%;
+        /* ⭐ THIS controls ticket size */
+        max-width: 330px;
+        position: relative;
+      }
+
+      .ticket-img {
+        content: url("../assets/images/ticketp.png");
+        width: 100%;
+        height: auto;
+      }
+
+      .ticket-text {
+        width: 82%;
+        top: 35%;
+        left:50%;
+      }
+
+      .ticket-text h2 {
+        font-size: 15px;
+      }
+
+      .ticket-text .big {
+        font-size: 28px;
+      }
+
+      .ticket-text p {
+        font-size: 11px;
+      }
+
+      .ticket-start {
+        width: 68px;
+        height: 50px;
+        top: 58%;
+      }
+
+      @media (max-width:600px) {
+
+        body {
+          display: block;
+          margin: 0;
+          overflow-x: hidden;
+        }
+
+        .ticket-wrap {
+          width: fit-content;
+          margin: 10px auto;
+          transform: scale(0.73);
+          /* ⭐ THIS shrinks everything */
+          transform-origin: top center;
+        }
+
+        .ticket-img {
+          content: url("../assets/images/ticketp.png");
+          width: 100%;
+          height: auto;
+        }
+
+        .ticket-text h2 {
+          font-size: 24px;
+        }
+
+        .ticket-text .big {
+          font-size: 44px;
+        }
+
+        .ticket-text p {
+          font-size: 13px;
+          line-height: 1.4;
+        }
+
+      }
+    }
+    /* ===== ACTION BUTTONS ===== */
+
+.ticket-actions {
   position: absolute;
-  inset: 0;
-  backdrop-filter: blur(8px);
-  z-index: 0;
-}
 
-/* =========================
-TICKET WRAPPER
-========================= */
-
-.ticket-wrap {
-  position: relative;
-  width: 95%;
-  max-width: 900px;
-  z-index: 1;
-}
-
-.ticket-img {
-  width: 100%;
-  display: block;
-}
-
-/* =========================
-TICKET TEXT — DESKTOP
-========================= */
-
-.ticket-text {
-  position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
+  top: 230%;           /* ← use top instead of bottom */
+  transform: translateX(-50%);
 
-  font-family: "Playfair Display", Georgia, serif;
   text-align: center;
-}
-
-.ticket-text h2 {
-  margin: 0;
-  font-size: 2.2vw;
-  font-weight: 500;
-  color: #333;
-}
-
-.ticket-text .big {
-  display: block;
-  font-size: 4.5vw;
-  font-style: italic;
-  color: #ff004c;
-  margin: 0.8vw 0;
-}
-
-.ticket-text p {
-  margin: 0 auto;
-  font-size: 1.3vw;
-  line-height: 1.4;
-  color: #555;
-  max-width: 95%;
-}
-
-/* clickable start area */
-.ticket-start {
-  position: absolute;
-  right: 6%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 14vw;
-  height: 16vw;
-  cursor: pointer;
-}
-
-/* =========================
-MOBILE LAYOUT
-========================= */
-
-@media (max-width:600px) {
-
-  body {
-    display: block;
-  }
-
- .ticket-wrap {
-  width: 100vw;
-  height: auto;
-}
-
-  /* phone ticket image */
-  .ticket-img {
-  content: url("../assets/images/ticketp.png");
   width: 100%;
-  height: auto;
+}
+/* ===== PASTEL PILL BUTTON ===== */
+
+.start-btn {
   display: block;
+  margin: 0 auto 14px;
+
+  width: 180px;
+  padding: 14px 0;
+
+  border: none;
+  border-radius: 999px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff2f6d, #ff2f6d);
+
+  box-shadow: 0 6px 16px rgba(165, 139, 214, 0.35);
+
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
-  .ticket-text {
-    width: 78%;
-    top: 55%;
-  }
 
-  .ticket-text h2 {
-    font-size: 16px;
-    padding-right: 40px;
-  }
-
-  .ticket-text .big {
-    font-size: 30px;
-    padding-right: 40px;
-  }
-
-  .ticket-text p {
-    font-size: 11px;
-    line-height: 1.3;
-    padding-right: 40px;
-  }
-
-  .ticket-start {
-    width: 72px;
-    height: 95px;
-    right: 6%;
-    top: 55%;
-  }
-  @media (max-width:600px) {
-
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .ticket-wrap {
-    width: 100vw;
-    max-width: none;
-  }
-
-  .ticket-img {
-    content: url("../assets/images/ticketp.png");
-    width: 100vw;
-    height: auto;
-  }
-
+.start-btn:active {
+  transform: scale(0.96);
 }
-/* ===== PHONE — TRUE FULL SCREEN FIX ===== */
+
+/* Know more — elegant text */
+.know-more {
+  display: inline-block;
+
+  font-size: 20px;
+  color: #444;
+
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 4px;
 }
-@media (max-width:600px) {
+/* ===== DESKTOP BUTTON PLACEMENT ===== */
 
-  body {
-    display: block !important;
-    margin: 0;
-  }
+@media (min-width: 900px) {
 
-  .ticket-wrap {
-    width: 100vw;
-    max-width: none;
-    margin: 0 auto;
-  }
+  .ticket-actions {
+    position: absolute;
 
-  .ticket-img {
-    content: url("../assets/images/ticketp.png");
-    width: 100%;
-    height: auto;
-    display: block;
+    left: 118%;     /* move into right panel */
+    top: 60%;
+
+    transform: translate(-50%, -50%);
+    width: auto;
   }
 
 }
-
-</style>
+  </style>
 </head>
 
 <body>
 
-<div class="ticket-wrap">
+  <div class="ticket-wrap">
 
-  <!-- desktop ticket default -->
-  <img src="../assets/images/ticket2.png" class="ticket-img">
+    <img src="../assets/images/ticket2.png" class="ticket-img">
 
-  <div class="ticket-text">
-    <h2>Find your perfect match in</h2>
-    <span class="big">21 questions</span>
+    <div class="ticket-text">
+      <h2>Find your perfect match in</h2>
+      <span class="big">21 questions</span>
 
-    <p>
-      Join our exclusive singles mixer this Valentine's Day.<br>
-      Take our psychology-backed compatibility quiz to get paired<br>
-      with your ideal partner for the evening.
-    </p>
+      <p>
+        Join our exclusive singles mixer this Valentine's Day.<br>
+        Take our psychology-backed compatibility quiz to get paired<br>
+        with your ideal partner for the evening.
+      </p>
+      <div class="ticket-actions">
+        <button class="start-btn" onclick="startQuiz()">Start Quiz</button><br>
+        <a href="https://example.com"class="know-more" target="_blank">Know more</a>
+      </div>
+    </div>
+
+
   </div>
 
-  <div class="ticket-start" onclick="startQuiz()"></div>
-
-</div>
-
-<script>
-function startQuiz() {
-  window.location.href = "questions.html";
-}
-</script>
+  <script>
+    function startQuiz() {
+      window.location.href = "questions.html";
+    }
+  </script>
 
 </body>
+
 </html>
