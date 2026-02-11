@@ -128,17 +128,15 @@
   }
 
   .pref-btn {
-  position: absolute;
+    padding: 6px 44px;           /* THINNER & LONGER */
+    left: 66%;                   /* LEFT SHIFTED */
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    width: 380px;                /* LONGER */
+    height: 42px;                /* THINNER */
+    font-size: 13px;
+  }
 
-  left: 66%;
-  top: 50%;
-
-  transform: rotate(-90deg) translateY(-50%);
-
-  width: 380px;
-  height: 42px;
-  font-size: 13px;
-}
   .pref-pill-group {
     justify-content: center;
   }
@@ -210,4 +208,160 @@
 .pref-input:focus {
   border-color: #ff2f67;
 }
+}
+
+/* =========================
+   PAGE BACKGROUND
+========================= */
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: system-ui, -apple-system, sans-serif;
+
+  background: linear-gradient(135deg, #ff0a54, #ff4d8d);
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.onboarding-container {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* =========================
+   MATCH CARD
+========================= */
+
+.match-card {
+  width: min(520px, 95vw);
+
+  background: white;
+  border-radius: 26px;
+
+  padding: 36px 28px;
+
+  text-align: center;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.3);
+}
+
+
+/* =========================
+   TITLES
+========================= */
+
+.match-title {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.match-subtitle {
+  margin: 0 0 24px;
+  font-size: 15px;
+  opacity: 0.75;
+}
+
+
+/* =========================
+   MATCH BLOCKS
+========================= */
+
+.match-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 10px 0;
+}
+
+
+/* emoji circle */
+
+.emoji-big {
+  font-size: 56px;
+
+  width: 90px;
+  height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #fff3f7;
+
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 60, 125, 0.2),
+    0 6px 14px rgba(0,0,0,0.08);
+
+  margin-bottom: 6px;
+}
+
+
+/* =========================
+   HEART DIVIDER
+========================= */
+
+.heart-divider {
+  font-size: 28px;
+  margin: 14px 0;
+}
+
+
+/* =========================
+   QUOTE
+========================= */
+
+.love-quote {
+  margin-top: 20px;
+
+  font-size: 15px;
+  line-height: 1.5;
+
+  padding: 14px 16px;
+
+  border-radius: 14px;
+
+  background: #fff3f7;
+  color: #333;
+
+  font-style: italic;
+}
+
+
+/* =========================
+   MOBILE TUNING
+========================= */
+
+@media (max-width: 480px) {
+
+  .match-title {
+    font-size: 22px;
+  }
+
+  .emoji-big {
+    font-size: 44px;
+    width: 72px;
+    height: 72px;
+  }
+
+  .love-quote {
+    font-size: 14px;
+  }
 }

@@ -3,43 +3,78 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tug of Love 💖</title>
-  <link rel="stylesheet" href="../assets/css/onboarding.css" />
+  <link rel="stylesheet" href="../assets/css/waiting.css" />
 </head>
 
 <body>
 
-  <div class="onboarding-container">
-  <div class="ticket-wrapper">
-
-  <img src="../assets/images/ticket3.png" class="ticket-img">
-
-  <div class="ticket-text">
-
-    <p class="ticket-title">Your match emoji is</p>
-
-    <div id="emojiDisplay" class="ticket-emoji">💠</div>
-
-    <p class="ticket-desc">
-      This is your identity for the event.  
-      Your match will look for this emoji ✨
-    </p>
-
-    <button id="findMatchBtn" class="ticket-btn">
-      Find your match
-    </button>
-
-  </div>
-
-</div>
+  <div class="stage">
 
 
+    <div class="ticket-wrapper">
 
-  </div>
+      <div class="stage">
 
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script src="../assets/js/supabase.js"></script>
-  <script src="../assets/js/waiting.js"></script>
+        <div class="ticket-wrapper">
+
+          <picture class="ticket-img">
+            <source media="(max-width: 700px)" srcset="../assets/images/ticketp.png">
+            <img src="../assets/images/ticket2.png" alt="ticket">
+          </picture>
+
+          <div class="ticket-text split">
+
+            <!-- LEFT SIDE -->
+            <div class="ticket-text">
+
+              <!-- LEFT SIDE — emoji -->
+              <div class="ticket-left">
+
+                <p class="ticket-title">Your match emoji is</p>
+
+                <div id="emojiDisplay" class="ticket-emoji">💠</div>
+
+                <p class="ticket-desc">
+                  This is your identity for the event.<br>
+                  Your match will look for this emoji ✨
+                </p>
+
+                <button id="findMatchBtn" class="ticket-btn">
+                  Find your match
+                </button>
+
+              </div>
+
+
+              <!-- RIGHT SIDE — booking -->
+              <div class="ticket-right">
+
+                <h3>Enter your ticket number</h3>
+
+                <form id="bookingForm">
+                  <input id="bookingCode" type="text" placeholder="NDIXXXXXXXXX">
+                  <button type="submit">Submit</button>
+                </form>
+                <a class="ticket-link"
+                  href="https://sortmyscene.com/event/tug-of-love-feb-14-2026?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnPEC8t__jD-g8Qe6uS8WgUAZtxW5KqN1x1pumZhCWNML5LSbLLN3jogt0zNc_aem_sanTAxVd5Oag5-pWOpYJQw"
+                  target="_blank">
+                  Didn’t buy the ticket yet
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+        <script src="../assets/js/supabase.js"></script>
+        <script src="../assets/js/waiting.js"></script>
+        <script src="../assets/js/booking.js"></script>
 </body>
 
 </html>

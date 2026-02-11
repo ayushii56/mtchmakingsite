@@ -149,7 +149,7 @@ function animateQuestionChange(updateFn) {
         .eq("id", user.id);
     }
 
-    window.location.href = "booking.html";
+    window.location.href = "waiting.html";
   }
 
   agreeBtn.addEventListener("click", () => saveAnswer(1));
