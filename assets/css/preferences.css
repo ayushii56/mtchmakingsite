@@ -229,7 +229,6 @@
     font-size: 12px;
     z-index: 10;
   }
-}
 
 
 /* ================= DESKTOP ================= */
@@ -240,6 +239,11 @@
     width: min(1500px, 96vw);
     aspect-ratio: 3.6 / 1;
     background: url("../images/ticket2.png") center / contain no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   }
 
   .pref-btn {
@@ -269,4 +273,40 @@
   border-radius: 999px;
 
   bottom: 7%;        /* keeps it inside ticket edge */
+}
+
+@media (min-width: 900px) {
+
+  /* center content properly inside ticket */
+  .pref-content {
+    position: static;   /* remove absolute offset */
+    transform: none;
+
+    width: 36%;
+    max-width: 520px;
+
+    margin: 0 auto;
+  }
+
+}
+
+  /* desktop dropdown width */
+  .pref-input {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  /* pill spacing for desktop */
+  .pref-pill-group {
+    gap: 12px;
+  }
+
+  /* desktop button positioning */
+  .pref-btn {
+    left: 64%;
+    top: 50%;
+    transform: rotate(-90deg) translateY(-50%);
+    width: 260px;
+  }
+
 }
