@@ -1,39 +1,35 @@
-// assets/js/profile.js
 console.log("profile.js loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("profileForm");
   const phoneInput = document.getElementById("phone");
 
-  phoneInput.addEventListener("input", () => {
-    // allow numbers only
-    phoneInput.value = phoneInput.value.replace(/\D/g, "");
-
-    // enforce max 10 digits
-    if (phoneInput.value.length >= 10) {
-      phoneInput.value = phoneInput.value.slice(0, 10);
-    }
-  });
-if (phoneInput.value.length !== 10) {
-  alert("Phone number must be exactly 10 digits");
-  return;
-}
-
-  if (!form) {
-    console.error("profileForm not found");
+  if (!form || !phoneInput) {
+    console.error("Form or phone input not found");
     return;
   }
 
-  form.addEventListener("submit", async (e) => {
-    console.log("submit clicked");
-    e.preventDefault();
+  // Phone input restriction
+  phoneInput.addEventListener("input", () => {
+    phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, 10);
+  });
 
-    const name = document.getElementById("name")?.value.trim();
-    const phone = document.getElementById("phone")?.value.trim();
-    const gender = document.getElementById("gender")?.value.trim();
+  // Submit handler
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    console.log("submit clicked");
+
+    const name = document.getElementById("name").value.trim();
+    const phone = phoneInput.value.trim();
+    const gender = document.getElementById("gender").value.trim();
 
     if (!name || !phone || !gender) {
       alert("Please fill all fields 💖");
+      return;
+    }
+
+    if (phone.length !== 10) {
+      alert("Phone number must be exactly 10 digits");
       return;
     }
 
@@ -59,8 +55,8 @@ if (phoneInput.value.length !== 10) {
     });
 
     if (error) {
-      console.error("FULL ERROR:", JSON.stringify(error, null, 2));
-      alert(JSON.stringify(error, null, 2));
+      console.error(error);
+      alert("Something went wrong saving profile");
       return;
     }
 
