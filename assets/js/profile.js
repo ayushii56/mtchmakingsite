@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     phoneInput.value = phoneInput.value.replace(/\D/g, "");
 
     // enforce max 10 digits
-    if (phoneInput.value.length > 10) {
+    if (phoneInput.value.length >= 10) {
       phoneInput.value = phoneInput.value.slice(0, 10);
     }
   });
