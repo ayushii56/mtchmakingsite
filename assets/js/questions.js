@@ -7,14 +7,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const agreeBtn = document.getElementById("agreeBtn");
   const disagreeBtn = document.getElementById("disagreeBtn");
 
-  // NEW — arrow buttons (frontend only)
   const arrowUp = document.getElementById("arrowUp");
   const arrowDown = document.getElementById("arrowDown");
 
-  // -----------------------------
-  // QUESTIONS (UNCHANGED)
-  // -----------------------------
-  const questions = [
+ const questions = [
     // 1️⃣ YOU BETTER MATCH MY ENERGY
     "I would pick a chill night-in over a chaotic night-out.",
     "I enjoy dates that don’t need lots of spending or a Google Calendar itinerary.",
@@ -50,16 +46,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     "I don’t believe in playing hard to get.",
     "I think timing matters almost as much as chemistry."
   ];
-
-  // -----------------------------
-  // LOAD SAVED PROGRESS
-  // -----------------------------
   let currentIndex = parseInt(localStorage.getItem("tol_q_index")) || 0;
   let answers = JSON.parse(localStorage.getItem("tol_answers")) || [];
 
-  // -----------------------------
-  // SUPABASE (UNCHANGED)
-  // -----------------------------
   const supabase = window.supabaseClient;
   let user = null;
 
@@ -68,36 +57,63 @@ document.addEventListener("DOMContentLoaded", async () => {
     user = res?.data?.user || null;
   }
 
-  // -----------------------------
-  // RENDER QUESTION
-  // -----------------------------
   function renderQuestion() {
+    questionText.textContent = questions[currentIndex];
+    progressText.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
 
-  questionText.textContent = questions[currentIndex];
-  progressText.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+    agreeBtn.checked = false;
+    disagreeBtn.checked = false;
+  }
 
-  // ⭐ clear previous answer
-  document.getElementById("agreeBtn").checked = false;
-  document.getElementById("disagreeBtn").checked = false;
+  // ⭐ Animation wrapper
+function animateQuestionChange(updateFn) {
 
+  const q = document.getElementById("questionText");
+  const p = document.getElementById("progressText");
+
+  // slide old question up
+  q.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+  p.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+
+  q.style.transform = "translateY(-40px)";
+  p.style.transform = "translateY(-40px)";
+  q.style.opacity = "0";
+  p.style.opacity = "0";
+
+  setTimeout(() => {
+
+    // place new question BELOW
+    updateFn();
+
+    q.style.transition = "none";
+    p.style.transition = "none";
+
+    q.style.transform = "translateY(40px)";
+    p.style.transform = "translateY(40px)";
+    q.style.opacity = "0";
+    p.style.opacity = "0";
+
+    requestAnimationFrame(() => {
+
+      // animate upward into position
+      q.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+      p.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+
+      q.style.transform = "translateY(0)";
+      p.style.transform = "translateY(0)";
+      q.style.opacity = "1";
+      p.style.opacity = "1";
+
+    });
+
+  }, 300);
 }
-
-    // optional smooth animation
-    questionText.style.animation = "fadeIn 0.2s ease";
-
-
-  // -----------------------------
-  // SAVE ANSWER (UNCHANGED CORE)
-  // -----------------------------
   async function saveAnswer(value) {
 
-    // local save
     answers[currentIndex] = value;
     localStorage.setItem("tol_answers", JSON.stringify(answers));
 
-    // Supabase save — untouched
     if (supabase && user) {
-
       const { error } = await supabase
         .from("answers")
         .upsert({
@@ -106,37 +122,27 @@ document.addEventListener("DOMContentLoaded", async () => {
           answer: value
         });
 
-      if (error) {
-        console.error("Supabase save failed:", error.message);
-      }
+      if (error) console.error("Supabase save failed:", error.message);
     }
 
-    // auto next
     currentIndex++;
     localStorage.setItem("tol_q_index", currentIndex);
 
     if (currentIndex < questions.length) {
 
-      renderQuestion();
+      animateQuestionChange(renderQuestion);
 
     } else {
 
       completeQuestionnaire();
-
     }
   }
 
-  // -----------------------------
-  // COMPLETE FLOW (UNCHANGED)
-  // -----------------------------
   async function completeQuestionnaire() {
-
-    console.log("Final answers:", answers);
 
     localStorage.removeItem("tol_q_index");
 
     if (supabase && user) {
-
       await supabase
         .from("users")
         .update({ questions_done: true })
@@ -146,24 +152,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = "booking.html";
   }
 
-  // -----------------------------
-  // BUTTON HANDLERS
-  // -----------------------------
   agreeBtn.addEventListener("click", () => saveAnswer(1));
   disagreeBtn.addEventListener("click", () => saveAnswer(0));
 
-  // -----------------------------
-  // ARROW NAVIGATION (NEW — FRONTEND ONLY)
-  // -----------------------------
   arrowUp?.addEventListener("click", () => {
 
     if (currentIndex > 0) {
 
       currentIndex--;
       localStorage.setItem("tol_q_index", currentIndex);
-      renderQuestion();
+      animateQuestionChange(renderQuestion);
     }
-
   });
 
   arrowDown?.addEventListener("click", () => {
@@ -172,14 +171,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       currentIndex++;
       localStorage.setItem("tol_q_index", currentIndex);
-      renderQuestion();
+      animateQuestionChange(renderQuestion);
     }
-
   });
 
-  // -----------------------------
-  // INIT
-  // -----------------------------
   renderQuestion();
 
 });
