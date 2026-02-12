@@ -1,24 +1,19 @@
 // assets/js/booking.js
+
 console.log("booking.js loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
+
   const form = document.getElementById("bookingForm");
   const input = document.getElementById("bookingCode");
 
-  console.log("form:", form);
-  console.log("input:", input);
-
-  if (!form || !input) {
-    alert("Booking form DOM not ready");
-    return;
-  }
+  if (!form || !input) return;
 
   form.addEventListener("submit", async (e) => {
+
     e.preventDefault();
-    console.log("Booking form submitted");
 
-    const bookingCode = input.value.trim();
-
+    const bookingCode = input.value.trim().toUpperCase();
     if (!bookingCode) {
       alert("Please enter booking ID");
       return;
@@ -30,33 +25,30 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const {
-      data: { user }
-    } = await supabase.auth.getUser();
-
+    const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       alert("User not logged in");
       return;
     }
 
     // 1️⃣ Check booking ID
-    const { data, error } = await supabase
+    const { data: bookingData, error } = await supabase
       .from("booking_ids")
       .select("*")
       .eq("booking_code", bookingCode)
-      .single();
+      .maybeSingle();
 
-    if (error || !data) {
+    if (error || !bookingData) {
       alert("Invalid booking ID ❌");
       return;
     }
 
-    if (data.is_used) {
+    if (bookingData.is_used) {
       alert("This booking ID is already used ❌");
       return;
     }
 
-    // 2️⃣ Claim booking ID
+    // 2️⃣ Mark booking ID as used
     const { error: claimError } = await supabase
       .from("booking_ids")
       .update({
@@ -71,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 3️⃣ Update user
+    // 3️⃣ Mark user as verified
     await supabase
       .from("users")
       .update({
@@ -80,24 +72,27 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .eq("id", user.id);
 
+    // 4️⃣ Assign emoji via RPC
+    const { data: emoji, error: emojiError } = await supabase
+      .rpc("assign_emoji_to_user", { p_user_id: user.id });
+
+    if (emojiError || !emoji) {
+      console.error(emojiError);
+      alert("Emoji assignment failed");
+      return;
+    }
+
+    // 5️⃣ Save emoji on user
+    await supabase
+      .from("users")
+      .update({ emoji })
+      .eq("id", user.id);
+
     alert("Booking ID verified 💖");
-// 🎀 ASSIGN EMOJI VIA RPC (FINAL FIX)
-const { data: emoji, error: emojiError } = await supabase
-  .rpc("assign_emoji_to_user", { p_user_id: user.id });
 
-if (emojiError) {
-  console.error(emojiError);
-  alert("Emoji assignment failed");
-  return;
-}
+    // 6️⃣ Reload page so waiting.js updates UI
+    window.location.reload();
 
-// save emoji on user profile
-await supabase
-  .from("users")
-  .update({ emoji })
-  .eq("id", user.id);
-
-
-    window.location.href = "waiting.html";
   });
+
 });

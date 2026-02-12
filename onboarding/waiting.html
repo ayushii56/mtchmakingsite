@@ -11,6 +11,7 @@
 <body>
 
   <div class="stage">
+
     <div class="ticket-wrapper">
 
       <picture class="ticket-img">
@@ -23,26 +24,31 @@
         <!-- LEFT SIDE -->
         <div class="ticket-left">
 
-          <p class="ticket-title">Your match emoji is</p>
+        <p class="ticket-title">Your match emoji is</p>
 
-          <div id="emojiDisplay" class="ticket-emoji">💠</div>
+        <div id="emojiDisplay" class="ticket-emoji">💠</div>
 
-          <p id="statusMessage" class="ticket-desc">
-            This is your identity for the event.<br>
-            Your match will look for this emoji ✨
-          </p>
+        <p id="statusMessage" class="ticket-desc">
+          Complete the next step to receive your emoji ✨
+        </p>
 
-        </div>
+        <button id="liveMatchBtn" class="ticket-btn" style="display:none;">
+          Find My Match 💘
+        </button>
 
-        <!-- RIGHT SIDE — booking -->
-        <div class="ticket-right" id="bookingSection">
+      </div>
 
-          <h3>Enter your ticket number</h3>
+      <div class="ticket-right" id="bookingSection">
 
-          <form id="bookingForm">
-            <input id="bookingCode" type="text" placeholder="TOL001">
-            <button type="submit">Submit</button>
-          </form>
+        <h3>Enter your ticket number</h3>
+
+        <form id="bookingForm">
+          <input id="bookingCode" type="text" placeholder="TOL001">
+          <button type="submit">Submit</button>
+        </form>
+
+      </div>
+
 
           <a class="ticket-link"
             href="https://sortmyscene.com/event/tug-of-love-feb-14-2026"
@@ -53,7 +59,9 @@
         </div>
 
       </div>
+
     </div>
+
   </div>
 
   <!-- Scripts -->

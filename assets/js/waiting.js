@@ -5,24 +5,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   const emojiDisplay = document.getElementById("emojiDisplay");
   const statusMessage = document.getElementById("statusMessage");
   const bookingSection = document.getElementById("bookingSection");
+  const liveMatchBtn = document.getElementById("liveMatchBtn");
 
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    alert("Not logged in");
-    return;
-  }
+  if (!user) return;
 
-  // Safely get event mode
-  const { data: eventState, error: eventError } = await supabase
+  // Get event mode
+  const { data: eventState } = await supabase
     .from("event_state")
     .select("mode")
     .eq("id", 1)
     .maybeSingle();
 
-  if (eventError || !eventState) {
-    alert("Event mode not set.");
-    return;
-  }
+  if (!eventState) return;
 
   // Get user info
   const { data: userData } = await supabase
@@ -36,6 +31,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ===============================
   if (eventState.mode === "pre_event") {
 
+    liveMatchBtn.style.display = "none";
+
     if (!userData.booking_verified) {
 
       bookingSection.style.display = "block";
@@ -46,9 +43,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Ticket verified
     bookingSection.style.display = "none";
-    emojiDisplay.textContent = userData.emoji || "💠";
+    emojiDisplay.textContent = userData.emoji;
+
     statusMessage.innerHTML = `
-      Your match will be revealed at 5 PM 💌 <br>
+      Your match will be revealed at 5 PM via email 💌 <br>
       See you at the event ✨
     `;
   }
@@ -60,6 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     bookingSection.style.display = "none";
 
+    // Assign emoji if missing
     if (!userData.emoji) {
 
       const { data: availableEmoji } = await supabase
@@ -89,11 +88,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       emojiDisplay.textContent = userData.emoji;
     }
 
-    statusMessage.innerHTML = "Finding your match… 💘";
+    statusMessage.innerHTML = `
+      Click below to find your match 💘
+    `;
 
-    setTimeout(() => {
+    liveMatchBtn.style.display = "block";
+
+    liveMatchBtn.addEventListener("click", () => {
       window.location.href = "finding.html";
-    }, 1500);
+    });
   }
 
 });
