@@ -140,36 +140,25 @@ function animateQuestionChange(updateFn) {
 
   async function completeQuestionnaire() {
 
-    localStorage.removeItem("tol_q_index");
+  if (answers.length !== questions.length) {
+    alert("Please answer all questions.");
+    return;
+  }
+  
+  localStorage.removeItem("tol_q_index");
+  localStorage.removeItem("tol_answers");
 
-    if (supabase && user) {
-      await supabase
-        .from("users")
-        .update({ questions_done: true })
-        .eq("id", user.id);
-    }
 
-    // window.location.href = "waiting.html";
-    // After questionnaire complete
+  if (supabase && user) {
+    await supabase
+      .from("users")
+      .update({ questions_done: true })
+      .eq("id", user.id);
+  }
 
-    // Check event mode
-    const { data: eventState, error } = await supabase
-    .from("event_state")
-    .select("mode")
-    .eq("id", 1)
-    .single();
-    
-    if (error || !eventState) {
-      window.location.href = "waiting.html";
-      return;
+  window.location.href = "emoji.html";
 }
 
-    if (eventState.mode === "live") {
-      window.location.href = "finding.html";
-    } else {
-      window.location.href = "waiting.html";
-    }
-  }
 
   agreeBtn.addEventListener("click", () => saveAnswer(1));
   disagreeBtn.addEventListener("click", () => saveAnswer(0));

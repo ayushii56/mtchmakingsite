@@ -7,11 +7,13 @@ Deno.serve(async () => {
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
   );
 
-  // 1️⃣ Fetch eligible ticket users
+  // ==============================
+  // 1️⃣ Fetch Eligible Users
+  // ==============================
+
   const { data: users, error: userError } = await supabase
     .from("users")
-    .select("id, email")
-    .eq("booking_verified", true)
+    .select("id, email, gender_identity, sexual_orientation")
     .eq("questions_done", true)
     .eq("is_matched", false);
 
@@ -21,7 +23,10 @@ Deno.serve(async () => {
 
   const userIds = users.map(u => u.id);
 
-  // 2️⃣ Fetch answers
+  // ==============================
+  // 2️⃣ Fetch Answers
+  // ==============================
+
   const { data: answers } = await supabase
     .from("answers")
     .select("user_id, question_index, answer")
@@ -34,70 +39,199 @@ Deno.serve(async () => {
     answersMap[row.user_id][row.question_index] = row.answer;
   });
 
-  // 3️⃣ Compatibility
+  // ==============================
+  // 3️⃣ Hard Compatibility Logic
+  // ==============================
+
+  type Gender = "male" | "female" | "non-binary";
+  type Orientation = "straight" | "gay" | "lesbian" | "bisex" | "other";
+
+  function getAttractionSet(gender: Gender, orientation: Orientation): Gender[] {
+
+    if (orientation === "straight") {
+      if (gender === "male") return ["female"];
+      if (gender === "female") return ["male"];
+      if (gender === "non-binary") return ["male", "female"];
+    }
+
+    if (orientation === "gay") {
+      if (gender === "male") return ["male"];
+      if (gender === "female") return ["female"];
+      if (gender === "non-binary") return ["non-binary"];
+    }
+
+    if (orientation === "lesbian") {
+      return ["female"];
+    }
+
+    if (orientation === "bisex" || orientation === "other") {
+      return ["male", "female", "non-binary"];
+    }
+
+    return [];
+  }
+
+  function isCompatible(a: any, b: any): boolean {
+    const aAttracted = getAttractionSet(a.gender_identity, a.sexual_orientation);
+    const bAttracted = getAttractionSet(b.gender_identity, b.sexual_orientation);
+
+    return (
+      aAttracted.includes(b.gender_identity) &&
+      bAttracted.includes(a.gender_identity)
+    );
+  }
+
+  // ==============================
+  // 4️⃣ Weighted Similarity
+  // ==============================
+
   const weights = [3,3,3,2,2,2,3,3,3,4,4,4,4,4,4,5,5,5,2,2,2];
   const maxScore = weights.reduce((a,b)=>a+b,0);
 
-  function compatibility(a:number[], b:number[]) {
+  function computeSimilarity(a:number[], b:number[]) {
     let score = 0;
-    for (let i=0;i<21;i++){
-      if(a[i]===b[i]) score+=weights[i];
+    for (let i=0;i<weights.length;i++){
+      if(a[i] === b[i]) score += weights[i];
     }
-    return score/maxScore;
+    return score / maxScore;
   }
 
-  const pairs:any[] = [];
+  // ==============================
+  // 5️⃣ Build Top-5 Preference Map
+  // ==============================
 
-  for (let i=0;i<users.length;i++){
-    for (let j=i+1;j<users.length;j++){
+  const preferenceMap: Record<string, { id:string, score:number }[]> = {};
 
-      const u1 = users[i];
-      const u2 = users[j];
+  for (const A of users) {
 
-      if (!answersMap[u1.id] || !answersMap[u2.id]) continue;
+    preferenceMap[A.id] = [];
 
-      const score = compatibility(
-        answersMap[u1.id],
-        answersMap[u2.id]
+    for (const B of users) {
+
+      if (A.id === B.id) continue;
+
+      if (!isCompatible(A, B)) continue;
+
+      if (!answersMap[A.id] || !answersMap[B.id]) continue;
+
+      const score = computeSimilarity(
+        answersMap[A.id],
+        answersMap[B.id]
       );
 
-      pairs.push({ u1, u2, score });
+      preferenceMap[A.id].push({ id: B.id, score });
+    }
+
+    // Sort descending
+    preferenceMap[A.id].sort((a,b)=>b.score - a.score);
+
+    // Keep Top 5
+    preferenceMap[A.id] = preferenceMap[A.id].slice(0,5);
+  }
+
+  // ==============================
+  // 6️⃣ Mutual Top-5 Stable Matching
+  // ==============================
+
+  function isMutual(a:string, b:string){
+    return (
+      preferenceMap[a].some(p=>p.id===b) &&
+      preferenceMap[b].some(p=>p.id===a)
+    );
+  }
+
+  const unmatched = new Set(users.map(u=>u.id));
+  const matches: Record<string,string> = {};
+  const proposalIndex: Record<string,number> = {};
+
+  users.forEach(u=>proposalIndex[u.id]=0);
+
+  while(true){
+
+    const proposer = Array.from(unmatched).find(
+      id => proposalIndex[id] < preferenceMap[id].length
+    );
+
+    if(!proposer) break;
+
+    const candidate = preferenceMap[proposer][proposalIndex[proposer]].id;
+    proposalIndex[proposer]++;
+
+    if(!isMutual(proposer,candidate)) continue;
+
+    if(!matches[candidate]){
+      matches[proposer] = candidate;
+      matches[candidate] = proposer;
+      unmatched.delete(proposer);
+      unmatched.delete(candidate);
+    } else {
+
+      const current = matches[candidate];
+      const prefs = preferenceMap[candidate];
+
+      const prefersNew =
+        prefs.findIndex(p=>p.id===proposer) <
+        prefs.findIndex(p=>p.id===current);
+
+      if(prefersNew){
+        matches[proposer] = candidate;
+        matches[candidate] = proposer;
+        unmatched.delete(proposer);
+        unmatched.add(current);
+        delete matches[current];
+      }
     }
   }
 
-  pairs.sort((a,b)=>b.score-a.score);
+  // ==============================
+  // 7️⃣ Save Matches + Email
+  // ==============================
 
-  const matched = new Set<string>();
+  for (const [a,b] of Object.entries(matches)) {
 
-  for (const pair of pairs){
+    if (a < b) {
 
-    if (matched.has(pair.u1.id) || matched.has(pair.u2.id))
-      continue;
+      const score = computeSimilarity(
+        answersMap[a],
+        answersMap[b]
+      );
 
-    // insert match
-    await supabase.from("matches").insert({
-      user_a_id: pair.u1.id,
-      user_b_id: pair.u2.id,
-      compatibility_score: pair.score
-    });
+      await supabase.from("matches").insert({
+        user_a_id: a,
+        user_b_id: b,
+        compatibility_score: score
+      });
 
-    // lock users
-    await supabase.from("users")
-      .update({ is_matched: true })
-      .in("id", [pair.u1.id, pair.u2.id]);
+      await supabase.from("users")
+        .update({ is_matched: true })
+        .in("id",[a,b]);
 
-    matched.add(pair.u1.id);
-    matched.add(pair.u2.id);
-
-    // send emails
-    await sendEmail(pair.u1.email);
-    await sendEmail(pair.u2.email);
+      await sendEmail(supabase, a, b);
+      await sendEmail(supabase, b, a);
+    }
   }
 
   return new Response("Batch matching complete.");
 });
 
-async function sendEmail(email:string){
+
+// ==============================
+// EMAIL FUNCTION
+// ==============================
+
+async function sendEmail(supabase:any, userId:string, matchId:string){
+
+  const { data: user } = await supabase
+    .from("users")
+    .select("email, emoji")
+    .eq("id", userId)
+    .single();
+
+  const { data: match } = await supabase
+    .from("users")
+    .select("emoji")
+    .eq("id", matchId)
+    .single();
 
   await fetch("https://api.resend.com/emails",{
     method:"POST",
@@ -107,11 +241,13 @@ async function sendEmail(email:string){
     },
     body:JSON.stringify({
       from:"Tug of Love <noreply@yourdomain.com>",
-      to:email,
+      to:user.email,
       subject:"Your Match is Here 💖",
       html:`
         <h2>Your match has been revealed 💘</h2>
-        <p>Log into Tug of Love to see who you’ve been paired with.</p>
+        <p>Your emoji: <b>${user.emoji}</b></p>
+        <p>Your match's emoji: <b>${match.emoji}</b></p>
+        <p>See you at Raasta Khar ✨</p>
       `
     })
   });

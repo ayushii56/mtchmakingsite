@@ -4,99 +4,80 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const emojiDisplay = document.getElementById("emojiDisplay");
   const statusMessage = document.getElementById("statusMessage");
-  const bookingSection = document.getElementById("bookingSection");
-  const liveMatchBtn = document.getElementById("liveMatchBtn");
 
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return;
-
-  const { data: eventState } = await supabase
-    .from("event_state")
-    .select("mode")
-    .eq("id", 1)
-    .maybeSingle();
-
-  if (!eventState) return;
-
-  const { data: userData } = await supabase
-    .from("users")
-    .select("emoji, booking_verified")
-    .eq("id", user.id)
-    .single();
-
-  // ===============================
-  // PRE-EVENT MODE
-  // ===============================
-  if (eventState.mode === "pre_event") {
-
-    liveMatchBtn.style.display = "none";
-
-    // 🚫 DO NOT SHOW EMOJI YET
-    if (!userData.booking_verified) {
-
-      emojiDisplay.textContent = "🎟️";
-      statusMessage.innerHTML = "Enter your ticket ID to receive your emoji ✨";
-      bookingSection.style.display = "block";
-
-      return;
-    }
-
-    // ✅ AFTER TICKET VERIFIED
-    bookingSection.style.display = "none";
-    emojiDisplay.textContent = userData.emoji;
-
-    statusMessage.innerHTML = `
-      Your match will be revealed at 5 PM via email 💌 <br>
-      See you at the event ✨
-    `;
-
+  if (!user) {
+    window.location.href = "../index.html";
     return;
   }
 
-  // ===============================
-  // LIVE MODE
-  // ===============================
-  if (eventState.mode === "live") {
+  // Fetch user
+  const { data: userData } = await supabase
+    .from("users")
+    .select("emoji")
+    .eq("id", user.id)
+    .single();
 
-    bookingSection.style.display = "none";
+  let emoji = userData?.emoji;
 
-    if (!userData.emoji) {
+  // Assign emoji if not assigned
+  if (!emoji) {
 
-      const { data: availableEmoji } = await supabase
-        .from("emojis")
-        .select("*")
-        .eq("is_assigned", false)
-        .limit(1)
-        .maybeSingle();
+    const { data: availableEmoji } = await supabase
+      .from("emojis")
+      .select("*")
+      .eq("is_assigned", false)
+      .limit(1)
+      .single();
 
-      if (availableEmoji) {
+    if (availableEmoji) {
 
-        await supabase.from("users")
-          .update({ emoji: availableEmoji.emoji })
-          .eq("id", user.id);
+      await supabase.from("users")
+        .update({ emoji: availableEmoji.emoji })
+        .eq("id", user.id);
 
-        await supabase.from("emojis")
-          .update({
-            is_assigned: true,
-            assigned_to_user_id: user.id
-          })
-          .eq("id", availableEmoji.id);
+      await supabase.from("emojis")
+        .update({
+          is_assigned: true,
+          assigned_to_user_id: user.id
+        })
+        .eq("id", availableEmoji.id);
 
-        emojiDisplay.textContent = availableEmoji.emoji;
-      }
+      emoji = availableEmoji.emoji;
+    }
+  }
 
-    } else {
-      emojiDisplay.textContent = userData.emoji;
+  emojiDisplay.textContent = emoji || "💠";
+
+  // Countdown
+  const eventDate = new Date("2026-02-14T17:00:00+05:30");
+
+  function updateCountdown() {
+
+    const now = new Date();
+    const diff = eventDate - now;
+
+    if (diff <= 0) {
+      statusMessage.innerHTML = `
+        Your match has been revealed via email 💌 <br>
+        See you at Raasta Khar ✨
+      `;
+      return;
     }
 
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
     statusMessage.innerHTML = `
-      Click below to find your match 💘
+      All good things come slow 💘 <br><br>
+      <strong>${days}d ${hours}h ${minutes}m</strong> <br>
+      until Tug of Love ✨ <br><br>
+      Matches revealed via email before the event 💌
     `;
-
-    liveMatchBtn.style.display = "block";
-
-    liveMatchBtn.addEventListener("click", () => {
-      window.location.href = "finding.html";
-    });
   }
+
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+
 });

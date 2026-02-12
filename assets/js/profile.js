@@ -1,65 +1,59 @@
-console.log("profile.js loaded");
-
 document.addEventListener("DOMContentLoaded", () => {
+
+  const supabase = window.supabaseClient;
+
   const form = document.getElementById("profileForm");
   const phoneInput = document.getElementById("phone");
 
-  if (!form || !phoneInput) {
-    console.error("Form or phone input not found");
+  if (!form || !phoneInput || !supabase) {
+    console.error("Missing DOM elements or supabase client");
     return;
   }
 
-  // Phone input restriction
+  // Restrict phone to 10 digits
   phoneInput.addEventListener("input", () => {
     phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, 10);
   });
 
-  // Submit handler
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log("submit clicked");
 
     const name = document.getElementById("name").value.trim();
-    const phone = phoneInput.value.trim();
-    const gender = document.getElementById("gender").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const gender = document.getElementById("gender").value;
+    const orientation = document.getElementById("orientation").value;
 
-    if (!name || !phone || !gender) {
-      alert("Please fill all fields 💖");
-      return;
-    }
-
-    if (phone.length !== 10) {
-      alert("Phone number must be exactly 10 digits");
-      return;
-    }
-
-    const supabase = window.supabaseClient;
-    if (!supabase) {
-      alert("Supabase not loaded");
+    if (!name || !phone || !gender || !orientation) {
+      alert("Please fill all fields.");
       return;
     }
 
     const { data: { user } } = await supabase.auth.getUser();
+
     if (!user) {
-      alert("User not logged in");
+      alert("User not logged in.");
       return;
     }
 
-    const { error } = await supabase.from("users").upsert({
-      id: user.id,
-      email: user.email,
-      name,
-      phone,
-      gender_identity: gender,
-      profile_done: true
-    });
+    const { error } = await supabase
+      .from("users")
+      .update({
+        name,
+        phone,
+        gender_identity: gender,
+        sexual_orientation: orientation,
+        profile_done: true,
+        is_matched: false
+      })
+      .eq("id", user.id);
 
     if (error) {
       console.error(error);
-      alert("Something went wrong saving profile");
+      alert("Error saving profile.");
       return;
     }
 
-    window.location.href = "preferences.html";
+    window.location.href = "questions.html";
   });
+
 });
