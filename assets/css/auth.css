@@ -76,12 +76,11 @@ body::before {
 }
 .primary-btn {
   top: 78%;
-  width: 70%;
-  max-width: 260px;
-  padding: 14px 20px;
-  font-size: 16px;    /* safety cap */
+  width: 75%;
+  max-width: 280px;
 
-  padding: 12px 16px;  /* tighter horizontal padding */
+  padding: 16px 22px;
+  font-size: 17px;
 
   border-radius: 999px;
   border: none;
@@ -89,11 +88,10 @@ body::before {
   background: linear-gradient(#ff6f9d, #ff2f6d);
   color: white;
 
-  font-weight: bold;
-  font-size: 14px;
-
+  font-weight: 600;
   cursor: pointer;
 }
+
 
 .auth-footer {
   top: 52%;
