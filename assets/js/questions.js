@@ -153,10 +153,16 @@ function animateQuestionChange(updateFn) {
     // After questionnaire complete
 
     // Check event mode
-    const { data: eventState } = await supabase
-      .from("event_state")
-      .select("mode")
-      .single();
+    const { data: eventState, error } = await supabase
+    .from("event_state")
+    .select("mode")
+    .eq("id", 1)
+    .single();
+    
+    if (error || !eventState) {
+      window.location.href = "waiting.html";
+      return;
+}
 
     if (eventState.mode === "live") {
       window.location.href = "finding.html";
