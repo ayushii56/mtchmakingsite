@@ -149,7 +149,20 @@ function animateQuestionChange(updateFn) {
         .eq("id", user.id);
     }
 
-    window.location.href = "waiting.html";
+    // window.location.href = "waiting.html";
+    // After questionnaire complete
+
+    // Check event mode
+    const { data: eventState } = await supabase
+      .from("event_state")
+      .select("mode")
+      .single();
+
+    if (eventState.mode === "live") {
+      window.location.href = "finding.html";
+    } else {
+      window.location.href = "waiting.html";
+    }
   }
 
   agreeBtn.addEventListener("click", () => saveAnswer(1));
