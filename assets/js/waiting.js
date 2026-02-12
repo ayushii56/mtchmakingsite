@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       await supabase.from("emojis")
         .update({
           is_assigned: true,
-          assigned_to_user_id: user.id
         })
         .eq("id", availableEmoji.id);
 
