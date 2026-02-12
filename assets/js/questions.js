@@ -1,5 +1,3 @@
-// assets/js/questions.js
-
 document.addEventListener("DOMContentLoaded", async () => {
 
   const questionText = document.getElementById("questionText");
@@ -46,7 +44,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     "I don’t believe in playing hard to get.",
     "I think timing matters almost as much as chemistry."
   ];
-  let currentIndex = parseInt(localStorage.getItem("tol_q_index")) || 0;
+  let storedIndex = parseInt(localStorage.getItem("tol_q_index"));
+
+  let currentIndex = 
+    !storedIndex || storedIndex < 0 || storedIndex >= questions.length
+      ? 0
+      : storedIndex;
+
   let answers = JSON.parse(localStorage.getItem("tol_answers")) || [];
 
   const supabase = window.supabaseClient;

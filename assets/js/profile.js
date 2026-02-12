@@ -52,7 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Error saving profile.");
       return;
     }
-
+    localStorage.removeItem("tol_q_index");
+    localStorage.removeItem("tol_answers");
     window.location.href = "questions.html";
   });
 
