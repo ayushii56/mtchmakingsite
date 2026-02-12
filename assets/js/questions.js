@@ -156,7 +156,7 @@ function animateQuestionChange(updateFn) {
       .eq("id", user.id);
   }
 
-  window.location.href = "emoji.html";
+  window.location.href = "waiting.html";
 }
 
 
