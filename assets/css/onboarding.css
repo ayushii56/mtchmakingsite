@@ -1,4 +1,5 @@
 /* ================= BACKGROUND ================= */
+
 .preferences-page {
   min-height: 100vh;
   display: flex;
@@ -17,31 +18,41 @@
   z-index: -1;
 }
 
+
 /* ================= CENTER ================= */
+
 .pref-center {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
+
 /* ================= TICKET ================= */
+
 .pref-ticket {
   position: relative;
 }
 
+
 /* ================= CONTENT ================= */
+
 .pref-content {
   position: absolute;
   inset: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   padding: 10%;
   text-align: center;
 }
 
+
 /* ================= TEXT ================= */
+
 .pref-title {
   font-family: "DM Serif Display", serif;
   font-size: clamp(26px, 5vw, 40px);
@@ -55,47 +66,92 @@
   margin-bottom: 20px;
 }
 
+
 /* ================= FORM ================= */
+
 .pref-form {
   width: 100%;
   max-width: 420px;
+
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.pref-input {
-  padding: 6px 12px;
+
+/* ================= INPUT + SELECT ================= */
+
+.pref-input,
+select {
+  width: 100%;
+  padding: 14px 18px;
+
   border-radius: 14px;
-  border: 2px solid #f3b3be;
-  font-size: 14px;
-  outline: none;
-  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.08);
+
+  font-size: 16px;
+  font-family: inherit;
+
+  background: rgba(255,255,255,0.95);
+
+  transition: all 0.2s ease;
 }
 
-.pref-input:focus {
-  border-color: #ff2f67;
+/* Focus glow */
+.pref-input:focus,
+select:focus {
+  outline: none;
+  border-color: #ff2f6d;
+  box-shadow: 0 0 0 3px rgba(255,47,109,0.15);
 }
+
+/* ================= SLEEK SELECT ARROW ================= */
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7L10 12L15 7' stroke='%23ff2f6d' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+
+  cursor: pointer;
+}
+
 
 /* ================= BUTTON ================= */
+
 .pref-btn {
   position: absolute;
   bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
+
   width: 240px;
   padding: 12px;
+
   border-radius: 999px;
   border: none;
+
   background: linear-gradient(#ff4b87,#ff1f5a);
   color: white;
+
   font-weight: bold;
+  font-size: 14px;
+
   cursor: pointer;
   box-shadow: 0 6px 14px rgba(0,0,0,0.25);
 }
 
-/* ================= DESKTOP ================= */
+
+/* =================================================
+💻 DESKTOP — horizontal ticket
+================================================= */
+
 @media (min-width: 900px) {
+
   .pref-ticket {
     width: min(1500px, 96vw);
     aspect-ratio: 3.6 / 1;
@@ -103,22 +159,14 @@
   }
 
   .pref-content {
-    position: absolute;
     top: 46%;
-    left: 48%;                   /* LEFT SHIFTED */
+    left: 48%;
     transform: translate(-50%, -50%);
     width: 40%;
   }
 
   .pref-title {
     font-size: 40px;
-    max-width: 520px;
-    margin-inline: auto;
-  }
-
-  .pref-sub {
-    margin-bottom: 22px;
-    margin-inline: auto;
   }
 
   .pref-form {
@@ -128,22 +176,24 @@
   }
 
   .pref-btn {
-    padding: 6px 44px;           /* THINNER & LONGER */
-    left: 66%;                   /* LEFT SHIFTED */
+    padding: 6px 44px;
+    left: 66%;
     top: 50%;
     transform: translate(-50%, -50%) rotate(-90deg);
-    width: 380px;                /* LONGER */
-    height: 42px;                /* THINNER */
-    font-size: 13px;
-  }
 
-  .pref-pill-group {
-    justify-content: center;
+    width: 380px;
+    height: 42px;
+    font-size: 13px;
   }
 }
 
-/* ================= MOBILE ================= */
+
+/* =================================================
+📱 MOBILE — vertical ticket
+================================================= */
+
 @media (max-width: 899px) {
+
   .pref-ticket {
     width: 94vw;
     max-width: 460px;
@@ -156,212 +206,30 @@
     top: 6%;
     left: 50%;
     transform: translateX(-50%);
-    width: 66%;
-    max-width: 240px;
+
+    width: 70%;
+    max-width: 260px;
+
     padding: 0;
     justify-content: flex-start;
   }
 
   .pref-form {
     width: 100%;
-    gap: 10px;
-  }
-
-  .pref-pill-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px;
-    width: 100%;
-    padding: 0 6px;
-  }
-
-  .pref-pill {
-    font-size: 11px;
-    padding: 4px 8px;
+    gap: 12px;
   }
 
   .pref-btn {
-    width: 110px !important;     /* SMALLER - FITS INSIDE TICKET */
-    padding: 4px 9px;
-    bottom: 10%;
-    font-size: 12px;
-    max-width: 120px;
+    width: 140px;
+    bottom: 8%;
+    font-size: 13px;
   }
 
   .pref-title {
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
 
   .pref-sub {
-    margin-bottom: 12px;
-  }
-  .pref-input {
-  padding: 4px 10px;
-  border-radius: 14px;
-  border: 2px solid #f3b3be;
-  font-size: 14px;
-  outline: none;
-  background: rgba(255,255,255,0.9);
-}
-
-.pref-input:focus {
-  border-color: #ff2f67;
-}
-}
-
-/* =========================
-   PAGE BACKGROUND
-========================= */
-
-body {
-  margin: 0;
-  min-height: 100vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-family: system-ui, -apple-system, sans-serif;
-
-  background: linear-gradient(135deg, #ff0a54, #ff4d8d);
-}
-
-
-/* =========================
-   MAIN CONTAINER
-========================= */
-
-.onboarding-container {
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-
-/* =========================
-   MATCH CARD
-========================= */
-
-.match-card {
-  width: min(520px, 95vw);
-
-  background: white;
-  border-radius: 26px;
-
-  padding: 36px 28px;
-
-  text-align: center;
-
-  box-shadow:
-    0 20px 60px rgba(0,0,0,0.18),
-    inset 0 0 0 1px rgba(255,255,255,0.3);
-}
-
-
-/* =========================
-   TITLES
-========================= */
-
-.match-title {
-  margin: 0 0 8px;
-  font-size: 28px;
-  font-weight: 700;
-}
-
-.match-subtitle {
-  margin: 0 0 24px;
-  font-size: 15px;
-  opacity: 0.75;
-}
-
-
-/* =========================
-   MATCH BLOCKS
-========================= */
-
-.match-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  margin: 10px 0;
-}
-
-
-/* emoji circle */
-
-.emoji-big {
-  font-size: 56px;
-
-  width: 90px;
-  height: 90px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background: #fff3f7;
-
-  box-shadow:
-    inset 0 0 0 2px rgba(255, 60, 125, 0.2),
-    0 6px 14px rgba(0,0,0,0.08);
-
-  margin-bottom: 6px;
-}
-
-
-/* =========================
-   HEART DIVIDER
-========================= */
-
-.heart-divider {
-  font-size: 28px;
-  margin: 14px 0;
-}
-
-
-/* =========================
-   QUOTE
-========================= */
-
-.love-quote {
-  margin-top: 20px;
-
-  font-size: 15px;
-  line-height: 1.5;
-
-  padding: 14px 16px;
-
-  border-radius: 14px;
-
-  background: #fff3f7;
-  color: #333;
-
-  font-style: italic;
-}
-
-
-/* =========================
-   MOBILE TUNING
-========================= */
-
-@media (max-width: 480px) {
-
-  .match-title {
-    font-size: 22px;
-  }
-
-  .emoji-big {
-    font-size: 44px;
-    width: 72px;
-    height: 72px;
-  }
-
-  .love-quote {
-    font-size: 14px;
+    margin-bottom: 16px;
   }
 }
