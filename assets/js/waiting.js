@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return;
 
-  // Get event mode
   const { data: eventState } = await supabase
     .from("event_state")
     .select("mode")
@@ -19,7 +18,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!eventState) return;
 
-  // Get user info
   const { data: userData } = await supabase
     .from("users")
     .select("emoji, booking_verified")
@@ -33,15 +31,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     liveMatchBtn.style.display = "none";
 
+    // 🚫 DO NOT SHOW EMOJI YET
     if (!userData.booking_verified) {
 
-      bookingSection.style.display = "block";
       emojiDisplay.textContent = "🎟️";
       statusMessage.innerHTML = "Enter your ticket ID to receive your emoji ✨";
+      bookingSection.style.display = "block";
+
       return;
     }
 
-    // Ticket verified
+    // ✅ AFTER TICKET VERIFIED
     bookingSection.style.display = "none";
     emojiDisplay.textContent = userData.emoji;
 
@@ -49,6 +49,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       Your match will be revealed at 5 PM via email 💌 <br>
       See you at the event ✨
     `;
+
+    return;
   }
 
   // ===============================
@@ -58,7 +60,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     bookingSection.style.display = "none";
 
-    // Assign emoji if missing
     if (!userData.emoji) {
 
       const { data: availableEmoji } = await supabase
@@ -98,5 +99,4 @@ document.addEventListener("DOMContentLoaded", async () => {
       window.location.href = "finding.html";
     });
   }
-
 });
