@@ -34,14 +34,15 @@ body::before {
 
 .auth-card {
   position: relative;
+  width: 92vw;
+  max-width: 420px;
 
-  width: min(92vw, 420px);
-  aspect-ratio: 3 / 5;
+  background: url("../images/ticketp.png") center top no-repeat;
+  background-size: 100% auto;
 
-  background:
-    url("../images/ticketp.png")
-    center / contain no-repeat;
+  padding-top: 150%;   /* controls height relative to width */
 }
+
 
 /* content positioning */
 
@@ -53,8 +54,8 @@ body::before {
 }
 
 .auth-title {
-  top: 16%;              /* was higher → reduces gap */
-  width: 78%;
+  top: 18%;
+  width: 80%;
 
   font-family: "DM Serif Display", serif;
 
@@ -65,8 +66,8 @@ body::before {
   text-align: center;
 }
 .auth-subtitle {
-  top: 34%;              /* was ~40% → closes gap */
-  width: 72%;
+  top: 36%;
+  width: 75%;
 
   font-size: clamp(16px, 4vw, 20px);
   line-height: 1.2;
@@ -75,9 +76,10 @@ body::before {
 }
 .primary-btn {
   top: 78%;
-
-  width: 58%;          /* ↓ smaller so it fits ticket */
-  max-width: 240px;    /* safety cap */
+  width: 70%;
+  max-width: 260px;
+  padding: 14px 20px;
+  font-size: 16px;    /* safety cap */
 
   padding: 12px 16px;  /* tighter horizontal padding */
 
@@ -94,8 +96,8 @@ body::before {
 }
 
 .auth-footer {
-  top: 48%;
-  width: 60%;
+  top: 52%;
+  width: 70%;
 
   font-size: 13px;
   line-height: 1.3;
