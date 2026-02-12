@@ -1,42 +1,10 @@
-// document.addEventListener("DOMContentLoaded", async () => {
-//   const supabase = window.supabaseClient;
-//   const emojiDisplay = document.getElementById("emojiDisplay");
-//   const findMatchBtn = document.getElementById("findMatchBtn");
-
-//   const {
-//     data: { user }
-//   } = await supabase.auth.getUser();
-
-//   if (!user) {
-//     alert("Not logged in");
-//     return;
-//   }
-
-//   const { data, error } = await supabase
-//     .from("users")
-//     .select("emoji")
-//     .eq("id", user.id)
-//     .single();
-
-//   if (error || !data?.emoji) {
-//     emojiDisplay.textContent = "💔";
-//     return;
-//   }
-
-//   emojiDisplay.textContent = data.emoji;
-
-//   findMatchBtn.addEventListener("click", () => {
-//     window.location.href = "match.html";
-//   });
-// });
 document.addEventListener("DOMContentLoaded", async () => {
 
   const supabase = window.supabaseClient;
 
   const emojiDisplay = document.getElementById("emojiDisplay");
-  const findMatchBtn = document.getElementById("findMatchBtn");
-  const bookingForm = document.getElementById("bookingForm");
-  const ticketRight = document.querySelector(".ticket-right");
+  const statusMessage = document.getElementById("statusMessage");
+  const bookingSection = document.getElementById("bookingSection");
 
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
@@ -44,12 +12,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  // Get event mode
-  const { data: eventState } = await supabase
+  // Safely get event mode
+  const { data: eventState, error: eventError } = await supabase
     .from("event_state")
     .select("mode")
     .eq("id", 1)
-    .single();
+    .maybeSingle();
+
+  if (eventError || !eventState) {
+    alert("Event mode not set.");
+    return;
+  }
 
   // Get user info
   const { data: userData } = await supabase
@@ -58,43 +31,35 @@ document.addEventListener("DOMContentLoaded", async () => {
     .eq("id", user.id)
     .single();
 
-  if (!eventState) {
-    alert("Event mode not set.");
-    return;
-  }
-
-  // 🟦 PRE EVENT MODE
+  // ===============================
+  // PRE-EVENT MODE
+  // ===============================
   if (eventState.mode === "pre_event") {
 
     if (!userData.booking_verified) {
-      // User must enter ticket
-      ticketRight.style.display = "block";
-      findMatchBtn.style.display = "none";
+
+      bookingSection.style.display = "block";
       emojiDisplay.textContent = "🎟️";
+      statusMessage.innerHTML = "Enter your ticket ID to receive your emoji ✨";
       return;
     }
 
     // Ticket verified
+    bookingSection.style.display = "none";
     emojiDisplay.textContent = userData.emoji || "💠";
-
-    ticketRight.style.display = "none";
-    findMatchBtn.style.display = "none";
-
-    const desc = document.querySelector(".ticket-desc");
-    desc.innerHTML = `
+    statusMessage.innerHTML = `
       Your match will be revealed at 5 PM 💌 <br>
       See you at the event ✨
     `;
-
   }
 
-  // 🟨 LIVE MODE
+  // ===============================
+  // LIVE MODE
+  // ===============================
   if (eventState.mode === "live") {
 
-    ticketRight.style.display = "none";
-    findMatchBtn.style.display = "none";
+    bookingSection.style.display = "none";
 
-    // If no emoji yet, assign one automatically
     if (!userData.emoji) {
 
       const { data: availableEmoji } = await supabase
@@ -102,7 +67,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         .select("*")
         .eq("is_assigned", false)
         .limit(1)
-        .single();
+        .maybeSingle();
 
       if (availableEmoji) {
 
@@ -124,7 +89,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       emojiDisplay.textContent = userData.emoji;
     }
 
-    // Go directly to live matching
+    statusMessage.innerHTML = "Finding your match… 💘";
+
     setTimeout(() => {
       window.location.href = "finding.html";
     }, 1500);
