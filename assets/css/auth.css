@@ -49,7 +49,7 @@ body {
 
 .ticket-bottom-btn {
   position: absolute;
-  bottom: 6%;               /* gives slight padding from bottom */
+  bottom: 2%;               /* gives slight padding from bottom */
   left: 50%;
   transform: translateX(-50%);
   width: 65%;

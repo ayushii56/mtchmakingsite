@@ -15,46 +15,46 @@ document.addEventListener("DOMContentLoaded", () => {
     phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, 10);
   });
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  const continueBtn = document.getElementById("continueBtn");
 
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const gender = document.getElementById("gender").value;
-    const orientation = document.getElementById("orientation").value;
+    continueBtn.addEventListener("click", async () => {
 
-    if (!name || !phone || !gender || !orientation) {
-      alert("Please fill all fields.");
-      return;
-    }
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const gender = document.getElementById("gender").value;
+      const orientation = document.getElementById("orientation").value;
 
-    const { data: { user } } = await supabase.auth.getUser();
+      if (!name || !phone || !gender || !orientation) {
+        alert("Please fill all fields.");
+        return;
+      }
 
-    if (!user) {
-      alert("User not logged in.");
-      return;
-    }
+      const { data: { user } } = await supabase.auth.getUser();
 
-    const { error } = await supabase
-      .from("users")
-      .update({
-        name,
-        phone,
-        gender_identity: gender,
-        sexual_orientation: orientation,
-        profile_done: true,
-        is_matched: false
-      })
-      .eq("id", user.id);
+      if (!user) {
+        alert("User not logged in.");
+        return;
+      }
 
-    if (error) {
-      console.error(error);
-      alert("Error saving profile.");
-      return;
-    }
-    localStorage.removeItem("tol_q_index");
-    localStorage.removeItem("tol_answers");
-    window.location.href = "questions.html";
-  });
+      const { error } = await supabase
+        .from("users")
+        .update({
+          name,
+          phone,
+          gender_identity: gender,
+          sexual_orientation: orientation,
+          profile_done: true,
+          is_matched: false
+        })
+        .eq("id", user.id);
 
-});
+      if (error) {
+        alert("Error saving profile.");
+        return;
+      }
+
+      localStorage.removeItem("tol_q_index");
+      localStorage.removeItem("tol_answers");
+      window.location.href = "questions.html";
+    });
+    });
