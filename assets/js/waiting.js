@@ -79,4 +79,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateCountdown();
   setInterval(updateCountdown, 60000);
 
+  document.addEventListener("DOMContentLoaded", () => {
+
+  const emojiBtn = document.getElementById("emojiBtn");
+  const overlay = document.getElementById("overlay");
+  const closePopup = document.getElementById("closePopup");
+
+  emojiBtn.addEventListener("click", () => {
+    overlay.classList.remove("hidden");
+  });
+
+  closePopup.addEventListener("click", () => {
+    overlay.classList.add("hidden");
+  });
+
+});
+
+
 });
