@@ -3,7 +3,7 @@
 ========================= */
 
 .question-frame {
-  background: url("../images/bgques.png")
+  background: url("../images/slot.png")
               center / contain no-repeat;
 
   width: min(900px, 95vw);
