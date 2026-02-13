@@ -7,10 +7,11 @@ body {
   min-height: 100vh;
   background: url("../images/slot.svg") center / cover no-repeat;
   font-family: "DM Serif Display", serif;
-
+  
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;   /* 👈 move upward */
+  padding-top: 18vh;   
 }
 
 /* =========================
