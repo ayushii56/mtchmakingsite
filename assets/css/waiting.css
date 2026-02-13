@@ -3,7 +3,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: url("../images/bg.png") center / cover no-repeat;
+  background: url("../images/img1.png") center / cover no-repeat;
   font-family: "DM Serif Display", serif;
 
   display: flex;
@@ -30,7 +30,7 @@ body {
 .ticket-content {
   position: absolute;
   /*edit to adjust height of emoji */
-  top: 28%;
+  top: 26%;
   left: 50%;
   transform: translateX(-50%);
   width: 70%;
@@ -60,7 +60,7 @@ body {
 
 @keyframes pulse {
   0% { transform: scale(1); }
-  50% { transform: scale(1.12); }
+  50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
 
@@ -68,11 +68,12 @@ body {
 
 .ticket-bottom-btn {
   position: absolute;
-  bottom: 5%;
+  bottom: 4%;
   left: 50%;
   transform: translateX(-50%);
   width: 45%;
   max-width: 180px;
+  cursor: pointer;
 }
 
 .ticket-bottom-btn img {
@@ -86,17 +87,22 @@ body {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.5);
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   z-index: 1000;
+
+  animation: fadeIn 0.25s ease;
 }
+
 
 .hidden {
   display: none;
 }
 
-.popup-card {
+/* .popup-card {
   width: 85%;
   max-width: 340px;
   background: white;
@@ -104,6 +110,37 @@ body {
   border: 2px solid #ff2f6d;
   padding: 24px;
   text-align: center;
+} */
+
+.popup-card {
+  width: 85%;
+  max-width: 340px;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, #fff9fb 0%, #ffffff 100%);
+  border-radius: 22px;
+  padding: 28px 24px;
+
+  text-align: center;
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.25),
+    0 0 0 2px rgba(255, 47, 109, 0.15);
+
+  border: 1px solid rgba(255, 47, 109, 0.3);
+}
+
+.popup-card h3 {
+  font-family: "DM Serif Display", serif;
+  font-size: 20px;
+  color: #ff2f6d;
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.popup-card p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #5a0f1b;
 }
 
 .popup-card a {
@@ -112,11 +149,25 @@ body {
 }
 
 .popup-card button {
-  margin-top: 16px;
-  padding: 10px 20px;
+  margin-top: 20px;
+  padding: 10px 24px;
   border-radius: 999px;
   border: none;
-  background: #ff2f6d;
+
+  background: linear-gradient(135deg, #ff4b87, #ff1f5a);
   color: white;
+
+  font-family: inherit;
+  font-size: 14px;
   cursor: pointer;
+
+  box-shadow: 0 6px 14px rgba(255, 47, 109, 0.3);
 }
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
