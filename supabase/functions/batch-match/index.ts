@@ -240,7 +240,7 @@ async function sendEmail(supabase:any, userId:string, matchId:string){
       "Content-Type":"application/json"
     },
     body:JSON.stringify({
-      from:"Tug of Love <noreply@yourdomain.com>",
+      from:"Tug of Love <exclusivpresents@gmail.com>",
       to:user.email,
       subject:"Your Match is Here 💖",
       html:`
