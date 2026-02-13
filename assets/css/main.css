@@ -34,8 +34,8 @@ HERO IMAGE
 ========================= */
 
 .hero-img {
-  width: 95vw;
-  max-width: 420px;
+  width: 100vw;          /* full phone width */
+  max-width: none;       /* remove restriction */
   height: auto;
   display: block;
   animation: popIn 0.9s ease;
@@ -47,14 +47,13 @@ CTA BUTTON (BIGGER FOR PHONE)
 
 .cta {
   display: block;
-  width: 92%;
-  max-width: 420px;
+  width: 94vw;           /* almost full width */
+  
+  margin-top: 56px;
+  padding: 28px 0;       /* taller */
 
-  margin-top: 48px;
-  padding: 22px 0;
-
-  font-size: 22px;
-  font-weight: 800;
+  font-size: 28px;
+  font-weight: 900;      /* bold bold */
 
   border: none;
   border-radius: 999px;
@@ -64,14 +63,14 @@ CTA BUTTON (BIGGER FOR PHONE)
 
   cursor: pointer;
 
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.3);
 
-  transition: transform 0.2s ease;
+  transition: transform 0.15s ease;
 }
 
 /* Tap effect */
 .cta:active {
-  transform: scale(0.96);
+  transform: scale(0.97);
 }
 
 /* =========================
