@@ -74,11 +74,11 @@ select {
 
 .ticket-bottom-btn {
   position: absolute;
-  bottom: 5%;             /* adjust for perfect alignment */
+  bottom: 4%;
   left: 50%;
   transform: translateX(-50%);
   width: 45%;
-  max-width: 180px;
+  max-width: 180px;   /* caps size on larger phones */
   height: auto;
   cursor: pointer;
 }
