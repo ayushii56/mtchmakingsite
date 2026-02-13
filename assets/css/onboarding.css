@@ -63,7 +63,7 @@ body {
 
 .pref-input,
 select {
-  width: 85%;
+  width: 75%;
   padding: 11px 14px;
   border-radius: 12px;
   border: 1px solid rgba(0, 0, 0, 0.1);
