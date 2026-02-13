@@ -3,15 +3,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   const supabase = window.supabaseClient;
 
   const emojiDisplay = document.getElementById("emojiDisplay");
+  const emojiBtn = document.getElementById("emojiBtn");
+  const overlay = document.getElementById("overlay");
+  const closePopup = document.getElementById("closePopup");
   const statusMessage = document.getElementById("statusMessage");
 
+  // 🔐 Get logged in user
   const { data: { user } } = await supabase.auth.getUser();
+
   if (!user) {
     window.location.href = "../index.html";
     return;
   }
 
-  // Fetch user
+  // 🎟 Fetch user's emoji
   const { data: userData } = await supabase
     .from("users")
     .select("emoji")
@@ -20,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let emoji = userData?.emoji;
 
-  // Assign emoji if not assigned
+  // 🎲 Assign emoji if not assigned
   if (!emoji) {
 
     const { data: availableEmoji } = await supabase
@@ -37,18 +42,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         .eq("id", user.id);
 
       await supabase.from("emojis")
-        .update({
-          is_assigned: true,
-        })
+        .update({ is_assigned: true })
         .eq("id", availableEmoji.id);
 
       emoji = availableEmoji.emoji;
     }
   }
 
+  // 🎉 Display emoji
   emojiDisplay.textContent = emoji || "💠";
 
-  // Countdown
+  // ⏳ Countdown
   const eventDate = new Date("2026-02-14T17:00:00+05:30");
 
   function updateCountdown() {
@@ -79,21 +83,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateCountdown();
   setInterval(updateCountdown, 60000);
 
-  document.addEventListener("DOMContentLoaded", () => {
+  // 🎀 Popup logic (CORRECTLY attached)
 
-  const emojiBtn = document.getElementById("emojiBtn");
-  const overlay = document.getElementById("overlay");
-  const closePopup = document.getElementById("closePopup");
+  if (emojiBtn && overlay && closePopup) {
 
-  emojiBtn.addEventListener("click", () => {
-    overlay.classList.remove("hidden");
-  });
+    emojiBtn.addEventListener("click", () => {
+      overlay.classList.remove("hidden");
+    });
 
-  closePopup.addEventListener("click", () => {
-    overlay.classList.add("hidden");
-  });
+    closePopup.addEventListener("click", () => {
+      overlay.classList.add("hidden");
+    });
 
-});
-
+  }
 
 });
