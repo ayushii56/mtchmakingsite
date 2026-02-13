@@ -15,9 +15,8 @@ body {
   min-height: 100vh;
 }
 
-
 /* =========================
-LANDING LAYOUT
+LANDING LAYOUT (MOBILE)
 ========================= */
 
 .landing {
@@ -26,21 +25,54 @@ LANDING LAYOUT
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 24px;
   text-align: center;
 }
 
-
-/* hero image */
+/* =========================
+HERO IMAGE
+========================= */
 
 .hero-img {
-  width: clamp(260px, 75vw, 720px);
+  width: 95vw;
+  max-width: 420px;
   height: auto;
   display: block;
-  margin: 0 auto;
   animation: popIn 0.9s ease;
 }
 
+/* =========================
+CTA BUTTON (BIGGER FOR PHONE)
+========================= */
+
+.cta {
+  display: block;
+  width: 92%;
+  max-width: 420px;
+
+  margin-top: 48px;
+  padding: 22px 0;
+
+  font-size: 22px;
+  font-weight: 800;
+
+  border: none;
+  border-radius: 999px;
+
+  background: #f5ec3fef;
+  color: #ff003c;
+
+  cursor: pointer;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+
+  transition: transform 0.2s ease;
+}
+
+/* Tap effect */
+.cta:active {
+  transform: scale(0.96);
+}
 
 /* =========================
 ANIMATION
@@ -49,129 +81,10 @@ ANIMATION
 @keyframes popIn {
   from {
     opacity: 0;
-    transform: scale(0.6) rotate(-8deg);
+    transform: scale(0.8);
   }
   to {
     opacity: 1;
-    transform: scale(1) rotate(-8deg);
+    transform: scale(1);
   }
-}
-
-
-/* =========================
-CTA BUTTON
-========================= */
-
-.cta {
-  margin-top: 40px;
-  padding: 20px 48px;            /* bigger */
-  font-size: clamp(18px, 3vw, 22px);
-  border: none;
-  border-radius: 999px;
-  background: #f5ec3fef;
-  color: #ff003c;
-  font-weight: 700;
-  cursor: pointer;
-
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.5s ease;
-
-  will-change: transform, opacity;
-}
-
-
-.cta.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.cta:hover {
-  background: #ffe3ea;
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-}
-
-
-
-/* =========================
-LOGIN (unchanged styles — preserved)
-========================= */
-
-.login-container {
-  text-align: center;
-  color: #ffe3ea;
-}
-
-.login-logo {
-  width: min(70vw, 700px);
-  margin-bottom: 20px;
-  animation: popIn 0.8s ease;
-}
-
-.login-container h1 {
-  color: #f5ec3fef;
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.login-container p {
-  color: #ffe3ea;
-  opacity: 0.9;
-  margin-bottom: 30px;
-}
-
-.login-box {
-  background: white;
-  border-radius: 20px;
-  padding: 30px;
-  width: min(90vw, 320px);
-  margin: auto;
-}
-
-.login-box button {
-  width: 100%;
-  padding: 14px;
-  border-radius: 999px;
-  border: none;
-  font-weight: bold;
-  background: #f5ec3fef;
-  color: #ff003c;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.login-box button:hover {
-  background: #ffe3ea;
-}
-/* =========================
-MOBILE — HERO IMAGE BOOST
-========================= */
-
-@media (max-width: 900px) {
-  .hero-img {
-    width: 99vw;
-  }
-}
-/* =========================
-MOBILE CTA FIX
-========================= */
-
-@media (max-width: 768px) {
-
-  .cta {
-    display: block;
-    width: 95%;
-    max-width: 600px;
-
-    padding: 24px 0;          /* taller */
-    font-size: 24px;          /* bigger text */
-    font-weight: 800;
-
-    border-radius: 999px;
-    margin-top: 50px;
-
-    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
-  }
-
 }
