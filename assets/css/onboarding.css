@@ -56,13 +56,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  align-items: center;
 }
 
 /* ================= INPUTS ================= */
 
 .pref-input,
 select {
-  width: 70%;
+  width: 85%;
   padding: 11px 14px;
   border-radius: 12px;
   border: 1px solid rgba(0, 0, 0, 0.1);
