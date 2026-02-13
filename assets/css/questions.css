@@ -7,12 +7,12 @@ body {
   min-height: 100vh;
   background: url("../images/slot.svg") center / cover no-repeat;
   font-family: "DM Serif Display", serif;
-  
+
   display: flex;
   justify-content: center;
-  align-items: flex-start;   /* 👈 move upward */
-  padding-top: 15vh;   
+  align-items: center;
 }
+
 
 /* =========================
    FRAME CONTAINER
@@ -21,7 +21,7 @@ body {
 .question-frame {
   width: 95vw;
   max-width: 420px;
-
+  transform: translateY(-6vh); 
   display: flex;
   justify-content: center;
   align-items: center;
