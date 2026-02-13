@@ -13,46 +13,65 @@
 
   <div class="waiting-container">
 
-    <div class="ticket">
+  <div class="ticket">
 
-      <img src="../assets/images/ticketp.png" class="ticket-img" />
+    <!-- Same ticket SVG used everywhere -->
+    <img src="../assets/images/ticketp.svg" class="ticket-img" />
 
-      <div class="ticket-content">
+    <div class="ticket-content">
 
-        <p class="ticket-title">Your emoji is</p>
+      <h2 class="ticket-title">Your Emoji</h2>
 
-        <button id="emojiBtn" class="emoji-btn">
-          <span id="emojiDisplay">💠</span>
-        </button>
+      <!-- Clickable Emoji -->
+      <button id="emojiBtn" class="emoji-btn">
+        <span id="emojiDisplay">💠</span>
+      </button>
 
-        <p class="ticket-sub">
-          Tap your emoji ✨
-        </p>
-
-        <!-- Link image button -->
-        <a href="https://sortmyscene.com/event/tug-of-love-feb-14-2026"
-           target="_blank"
-           class="link-button">
-           <img src="../assets/images/link.png" alt="Buy Ticket">
-        </a>
-
-      </div>
+      <p class="ticket-sub">Tap your emoji ✨</p>
 
     </div>
+
+    <!-- Bottom image button -->
+    <a href="https://sortmyscene.com/event/tug-of-love-feb-14-2026"
+       target="_blank"
+       class="ticket-bottom-btn">
+      <img src="../assets/images/waiting_btn.svg" alt="Book Now">
+    </a>
+
+  </div>
+
+</div>
+
 
   </div>
 
   <!-- POPUP CARD -->
   <div id="overlay" class="overlay hidden">
-    <div class="popup-card">
-      <h3>All good things come slow 💌</h3>
-      <p>
-        Your match will be revealed via email
-        before the event.
-      </p>
-      <button id="closePopup">Close</button>
-    </div>
+  <div class="popup-card">
+
+    <h3>What Happens Next 💌</h3>
+
+    <p>
+      Your match will be revealed shortly via email.
+    </p>
+
+    <p>
+      Come meet them at<br>
+      <strong>
+        <a href="https://www.google.com/maps/place/Raasta+Bombay+Khar/"
+           target="_blank">
+           Raasta Bombay, Khar
+        </a>
+      </strong>
+      <br>
+      14th Feb · 7 PM
+    </p>
+
+    <button id="closePopup">Close</button>
+
   </div>
+</div>
+
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script src="../assets/js/supabase.js"></script>

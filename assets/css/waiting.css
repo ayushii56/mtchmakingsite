@@ -1,34 +1,22 @@
-/* =========================
-FULL SCREEN BACKGROUND
-========================= */
+/* ================= BACKGROUND ================= */
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: url("../images/img1.png") center / cover no-repeat;
+  background: url("../images/bg.png") center / cover no-repeat;
+  font-family: "DM Serif Display", serif;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: system-ui, sans-serif;
 }
 
-/* =========================
-CONTAINER
-========================= */
-
-.waiting-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-/* =========================
-TICKET
-========================= */
+/* ================= TICKET ================= */
 
 .ticket {
   position: relative;
-  width: min(92vw, 420px);
+  width: 95vw;
+  max-width: 420px;
 }
 
 .ticket-img {
@@ -37,53 +25,38 @@ TICKET
   display: block;
 }
 
-/* =========================
-CONTENT LAYER
-========================= */
+/* ================= CONTENT ================= */
 
 .ticket-content {
   position: absolute;
-  inset: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
+  /*edit to adjust height of emoji */
+  top: 28%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
   text-align: center;
-  padding: 0 10%;
 }
-
-
-/* =========================
-TEXT
-========================= */
 
 .ticket-title {
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  color: #ff2f6d;
 }
 
 .ticket-sub {
   font-size: 14px;
-  margin-top: 6px;
-  opacity: 0.8;
+  margin-top: 8px;
 }
 
-/* =========================
-EMOJI BUTTON
-========================= */
+/* ================= EMOJI BUTTON ================= */
 
 .emoji-btn {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 64px;
-
   animation: pulse 1.8s infinite;
 }
-
-/* Pulsating animation */
 
 @keyframes pulse {
   0% { transform: scale(1); }
@@ -91,35 +64,31 @@ EMOJI BUTTON
   100% { transform: scale(1); }
 }
 
-/* =========================
-LINK IMAGE BUTTON
-========================= */
+/* ================= BOTTOM BUTTON ================= */
 
-.link-button {
+.ticket-bottom-btn {
   position: absolute;
-  bottom: 14%;
-  width: 60%;
-  max-width: 220px;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45%;
+  max-width: 180px;
 }
 
-.link-button img {
+.ticket-bottom-btn img {
   width: 100%;
   height: auto;
 }
 
-/* =========================
-OVERLAY POPUP
-========================= */
+/* ================= POPUP ================= */
 
 .overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.5);
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   z-index: 1000;
 }
 
@@ -130,17 +99,16 @@ OVERLAY POPUP
 .popup-card {
   width: 85%;
   max-width: 340px;
-
   background: white;
   border-radius: 18px;
   border: 2px solid #ff2f6d;
-
   padding: 24px;
   text-align: center;
 }
 
-.popup-card h3 {
-  margin-top: 0;
+.popup-card a {
+  color: #ff2f6d;
+  text-decoration: none;
 }
 
 .popup-card button {

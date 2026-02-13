@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const emojiBtn = document.getElementById("emojiBtn");
   const overlay = document.getElementById("overlay");
   const closePopup = document.getElementById("closePopup");
-  const statusMessage = document.getElementById("statusMessage");
+
+  if (!supabase) return;
 
   // 🔐 Get logged in user
   const { data: { user } } = await supabase.auth.getUser();
@@ -17,15 +18,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // 🎟 Fetch user's emoji
-  const { data: userData } = await supabase
+  const { data: userData, error } = await supabase
     .from("users")
     .select("emoji")
     .eq("id", user.id)
     .single();
 
+  if (error) {
+    console.error("Error fetching user:", error.message);
+    return;
+  }
+
   let emoji = userData?.emoji;
 
-  // 🎲 Assign emoji if not assigned
+  // 🎲 Assign emoji if not already assigned
   if (!emoji) {
 
     const { data: availableEmoji } = await supabase
@@ -37,11 +43,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (availableEmoji) {
 
-      await supabase.from("users")
+      await supabase
+        .from("users")
         .update({ emoji: availableEmoji.emoji })
         .eq("id", user.id);
 
-      await supabase.from("emojis")
+      await supabase
+        .from("emojis")
         .update({ is_assigned: true })
         .eq("id", availableEmoji.id);
 
@@ -52,39 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // 🎉 Display emoji
   emojiDisplay.textContent = emoji || "💠";
 
-  // ⏳ Countdown
-  const eventDate = new Date("2026-02-14T17:00:00+05:30");
-
-  function updateCountdown() {
-
-    const now = new Date();
-    const diff = eventDate - now;
-
-    if (diff <= 0) {
-      statusMessage.innerHTML = `
-        Your match has been revealed via email 💌 <br>
-        See you at Raasta Khar ✨
-      `;
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-
-    statusMessage.innerHTML = `
-      All good things come slow 💘 <br><br>
-      <strong>${days}d ${hours}h ${minutes}m</strong> <br>
-      until Tug of Love ✨ <br><br>
-      Matches revealed via email before the event 💌
-    `;
-  }
-
-  updateCountdown();
-  setInterval(updateCountdown, 60000);
-
-  // 🎀 Popup logic (CORRECTLY attached)
-
+  // 🎀 Popup logic
   if (emojiBtn && overlay && closePopup) {
 
     emojiBtn.addEventListener("click", () => {
@@ -93,6 +69,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     closePopup.addEventListener("click", () => {
       overlay.classList.add("hidden");
+    });
+
+    // Optional: close when tapping outside card
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        overlay.classList.add("hidden");
+      }
     });
 
   }
