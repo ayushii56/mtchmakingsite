@@ -11,7 +11,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;   /* 👈 move upward */
-  padding-top: 18vh;   
+  padding-top: 15vh;   
 }
 
 /* =========================
@@ -96,9 +96,9 @@ body {
 }
 
 #arrowUp {
-  transform: rotate(-90deg);
+  transform: none;        /* already pointing up */
 }
 
 #arrowDown {
-  transform: rotate(90deg);
+  transform: rotate(180deg);   /* flip to point down */
 }
