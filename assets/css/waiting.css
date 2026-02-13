@@ -3,7 +3,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: url("../images/img1.png") center / cover no-repeat;
+  background: url("../images/bg.png") center / cover no-repeat;
   font-family: "DM Serif Display", serif;
 
   display: flex;
@@ -68,7 +68,7 @@ body {
 
 .ticket-bottom-btn {
   position: absolute;
-  bottom: 4%;
+  bottom: 2%;
   left: 50%;
   transform: translateX(-50%);
   width: 45%;
