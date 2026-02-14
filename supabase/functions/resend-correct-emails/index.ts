@@ -77,5 +77,3 @@ Deno.serve(async () => {
           subject: "✨ Your Correct Match Details 💖",
           html: `
             <h2>Your Updated Match Details 💘</h2>
-
-            <
