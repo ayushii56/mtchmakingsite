@@ -8,7 +8,6 @@ Deno.serve(async () => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
-    // 🎯 Affected emails list
     const affectedEmails = [
       "tanishaa.3010@gmail.com",
       "maazansari846@gmail.com",
@@ -32,7 +31,6 @@ Deno.serve(async () => {
 
     for (const email of affectedEmails) {
 
-      // 1️⃣ Get user
       const { data: user } = await supabase
         .from("users")
         .select("id, email, emoji")
@@ -41,7 +39,6 @@ Deno.serve(async () => {
 
       if (!user) continue;
 
-      // 2️⃣ Find their match
       const { data: match } = await supabase
         .from("matches")
         .select("user_a_id, user_b_id")
@@ -55,7 +52,6 @@ Deno.serve(async () => {
           ? match.user_b_id
           : match.user_a_id;
 
-      // 3️⃣ Get partner details
       const { data: partner } = await supabase
         .from("users")
         .select("emoji, phone")
@@ -64,7 +60,6 @@ Deno.serve(async () => {
 
       if (!partner || !user.email) continue;
 
-      // 4️⃣ Send corrected email
       await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
@@ -77,3 +72,26 @@ Deno.serve(async () => {
           subject: "✨ Your Correct Match Details 💖",
           html: `
             <h2>Your Updated Match Details 💘</h2>
+
+            <p>Your emoji: <b>${user.emoji}</b></p>
+
+            <h3>Find your match by their emoji sticker or call them!</h3>
+
+            <p>Your match's emoji: <b>${partner.emoji}</b></p>
+            <p>Phone: <b>${partner.phone ?? "Not provided"}</b></p>
+
+            <p>See you at Raasta Khar on 14th Feb ✨</p>
+          `
+        })
+      });
+
+      emailsSent++;
+    }
+
+    return new Response(`Corrected ${emailsSent} emails successfully.`);
+
+  } catch (err) {
+    console.error("CRASH:", err);
+    return new Response("Internal Server Error", { status: 500 });
+  }
+});
