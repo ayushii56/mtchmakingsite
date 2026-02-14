@@ -229,7 +229,7 @@ async function sendEmail(supabase:any, userId:string, matchId:string){
 
   const { data: match } = await supabase
     .from("users")
-    .select("emoji")
+    .select("emoji, phone")
     .eq("id", matchId)
     .single();
 
@@ -240,14 +240,16 @@ async function sendEmail(supabase:any, userId:string, matchId:string){
       "Content-Type":"application/json"
     },
     body:JSON.stringify({
-      from:"Tug of Love <exclusivpresents@gmail.com>",
+      from:"Tug of Love <hello@exclusivpresents.com>",
       to:user.email,
       subject:"Your Match is Here 💖",
       html:`
         <h2>Your match has been revealed 💘</h2>
         <p>Your emoji: <b>${user.emoji}</b></p>
+         <h3>Find your match by their emoji sticker or call them!</h3>
         <p>Your match's emoji: <b>${match.emoji}</b></p>
-        <p>See you at Raasta Khar ✨</p>
+        <p>Phone: <b>${match.phone ?? "Not provided"}</b></p>
+        <p>See you at Raasta Khar on 14th Feb✨</p>
       `
     })
   });
